@@ -17,16 +17,27 @@
                         <div class="form-group row">
                           <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                            <input type="text" class="form-control" id="inputName" placeholder="Name" value="{{ $userData->name }}">
                           </div>
                         </div>
                         <div class="form-group row">
                           <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
                           <div class="col-sm-10">
-                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                            <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="{{ $userData->email }}">
                           </div>
                         </div>
-
+                        <div class="form-group row">
+                            <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                            <div class="col-sm-10">
+                              <input type="number" class="form-control" id="phone" placeholder="phone" value="{{ $userData->phone }}">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="address" class="col-sm-2 col-form-label">Address</label>
+                            <div class="col-sm-10">
+                              <input type="text" class="form-control" id="address" placeholder="address" value="{{ $userData->address }}">
+                            </div>
+                          </div>
                         <div class="form-group row">
                           <div class="offset-sm-2 col-sm-10">
                             <a href="">Change Password</a>

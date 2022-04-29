@@ -1,0 +1,82 @@
+@extends('admin.layout.app')
+@section('content')
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+
+   <!-- Main content -->
+   <section class="content">
+     <div class="container-fluid">
+       <div class="row mt-5">
+         <div class="col-12">
+            @if (Session::has('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+               <strong>{{ Session::get('success')}}</strong>
+               <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div>
+            @endif
+           <div class="card">
+             <div class="card-header">
+               <h3 class="card-title">
+                 <a href="{{ route('admin#addCategory') }}" class="btn btn-primary">Add Category</a>
+               </h3>
+
+               <div class="card-tools">
+                <form action="{{ route('admin#searchCategory') }}" method="POST">
+                  @csrf
+                  <div class="input-group my-0" style="width: 200px;">
+                    <input type="text" name="search" class="form-control float-right" placeholder="Search">
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                
+               </div>
+             </div>
+
+             <!-- /.card-header -->
+             <div class="card-body table-responsive p-0">
+               <table class="table table-hover text-nowrap text-center table-border">
+                 <thead>
+                   <tr>
+                     <th>ID</th>
+                     <th>Category Name</th>
+                     <th>Product Count</th>
+                     <th>Action</th>
+                   </tr>
+                 </thead>
+                 <tbody>
+                     @foreach ($categories as $item)
+                     <tr>
+                        <td>{{ $item->category_id }}</td>
+                        <td>{{ $item->category_name }}</td>
+                        <td>1</td>
+                        <td>
+                          <a href="{{ route('admin#editCategory',$item->category_id) }}" class="btn btn-sm bg-info text-white"><i class="fas fa-edit"></i></a>
+                          <a href="{{ route('admin#deleteCategory',$item->category_id) }}" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                      </tr>
+                     @endforeach
+                 </tbody>
+
+               </table>
+
+             </div>
+             <!-- /.card-body -->
+           </div>
+           {{ $categories->links() }}
+           <!-- /.card -->
+         </div>
+       </div>
+
+     </div><!-- /.container-fluid -->
+   </section>
+   <!-- /.content -->
+</div>
+
+@endsection

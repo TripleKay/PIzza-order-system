@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +36,20 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::group(['prefix'=>'admin'],function(){
-   Route::get('/',[AdminController::class,'index'])->name('admin#index');
-   Route::get('/profile',[AdminController::class,'profile'])->name('admin#profile');
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+   Route::get('/',[CategoryController::class,'index'])->name('admin#index');
+   Route::get('profile',[CategoryController::class,'profile'])->name('admin#profile');
+
+   Route::get('category',[CategoryController::class,'category'])->name('admin#category');
+   Route::get('addCategory',[CategoryController::class,'addCategory'])->name('admin#addCategory');
+   Route::post('createCategory',[CategoryController::class,'createCategory'])->name('admin#createCategory');
+   Route::get('edit/{id}',[CategoryController::class,'editCategory'])->name('admin#editCategory');
+   Route::post('update',[CategoryController::class,'updateCategory'])->name('admin#updateCategory');
+   Route::get('deleteCategory/{id}',[CategoryController::class,'deleteCategory'])->name('admin#deleteCategory');
+   Route::post('category',[CategoryController::class,'searchCategory'])->name('admin#searchCategory');
+
+   Route::get('/pizza',[CategoryController::class,'pizza'])->name('admin#pizza');
+
 });
 
 Route::group(['prefix'=>'user'],function(){

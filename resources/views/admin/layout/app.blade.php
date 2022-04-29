@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" style="background-color: #f4f6f9;">
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
       <li class="nav-item">
@@ -28,8 +28,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item">
-            <a href="myProfile.html" class="nav-link">
-              <i class="fas fa-user-circle"></i>
+            <a href="{{ route('admin#profile') }}" class="nav-link">
+              <i class="fas fa-user-circle mr-3"></i>
               <p>
                 My Profile
               </p>
@@ -37,8 +37,8 @@
           </li>
 
           <li class="nav-item">
-            <a href="category.html" class="nav-link">
-              <i class="fas fa-list"></i>
+            <a href="{{ route('admin#category') }}" class="nav-link">
+              <i class="fas fa-list mr-3"></i>
               <p>
                 Category
               </p>
@@ -46,8 +46,8 @@
           </li>
 
           <li class="nav-item">
-            <a href="pizza.html" class="nav-link">
-              <i class="fas fa-pizza-slice ms-5"></i>
+            <a href="{{ route('admin#pizza') }}" class="nav-link">
+              <i class="fas fa-pizza-slice ms-5 mr-3"></i>
               <p>
                 Pizza
               </p>
@@ -56,7 +56,7 @@
 
          <li class="nav-item">
             <a href="user.html" class="nav-link">
-            <i class="fas fa-users"></i>
+            <i class="fas fa-users mr-3"></i>
               <p>
                 User
               </p>
@@ -65,7 +65,7 @@
 
           <li class="nav-item">
             <a href="order.html" class="nav-link">
-              <i class="fas fa-book"></i>
+              <i class="fas fa-book mr-3"></i>
               <p>
                 Order
               </p>
@@ -74,7 +74,7 @@
 
           <li class="nav-item">
             <a href="carrier.html" class="nav-link">
-              <i class="fas fa-biking"></i>
+              <i class="fas fa-biking mr-3"></i>
               <p>
                 Carrier
               </p>
@@ -83,7 +83,7 @@
 
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="fas fa-sign-out-alt"></i>
+              <i class="fas fa-sign-out-alt mr-3"></i>
               <p>
                 Logout
               </p>
