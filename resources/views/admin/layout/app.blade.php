@@ -29,34 +29,36 @@
 
           <li class="nav-item">
             <a href="{{ route('admin#profile') }}" class="nav-link">
-              <i class="fas fa-user-circle mr-3"></i>
+              <i class="nav-icon fas fa-user-circle "></i>
               <p>
                 My Profile
+
               </p>
             </a>
           </li>
 
           <li class="nav-item">
             <a href="{{ route('admin#category') }}" class="nav-link">
-              <i class="fas fa-list mr-3"></i>
+              <i class="nav-icon fas fa-list"></i>
               <p>
                 Category
+
               </p>
             </a>
           </li>
 
           <li class="nav-item">
             <a href="{{ route('admin#pizza') }}" class="nav-link">
-              <i class="fas fa-pizza-slice ms-5 mr-3"></i>
+              <i class="nav-icon fas fa-pizza-slice"></i>
               <p>
                 Pizza
+
               </p>
             </a>
           </li>
-
          <li class="nav-item">
             <a href="user.html" class="nav-link">
-            <i class="fas fa-users mr-3"></i>
+            <i class="fas fa-users nav-icon"></i>
               <p>
                 User
               </p>
@@ -65,7 +67,7 @@
 
           <li class="nav-item">
             <a href="order.html" class="nav-link">
-              <i class="fas fa-book mr-3"></i>
+              <i class="fas fa-book nav-icon"></i>
               <p>
                 Order
               </p>
@@ -74,7 +76,7 @@
 
           <li class="nav-item">
             <a href="carrier.html" class="nav-link">
-              <i class="fas fa-biking mr-3"></i>
+              <i class="fas fa-biking nav-icon"></i>
               <p>
                 Carrier
               </p>
@@ -83,7 +85,7 @@
 
           <li class="nav-item">
             <a href="" class="nav-link">
-              <i class="fas fa-sign-out-alt mr-3"></i>
+              <i class="fas fa-sign-out-alt nav-icon"></i>
               <p>
                 Logout
               </p>

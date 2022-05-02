@@ -25,7 +25,7 @@ class CategoryController extends Controller
     //deletecategory
     public function deleteCategory($id){
         Category::where('category_id',$id)->delete();
-        return redirect()->route('admin#category')->with(['success'=>'Category Deleted...']);
+        return back()->with(['success'=>'Category Deleted...']);
     }
 
     //updatecategory
@@ -35,7 +35,7 @@ class CategoryController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('post/create')
+            return back()
                         ->withErrors($validator)
                         ->withInput();
         }
@@ -60,6 +60,15 @@ class CategoryController extends Controller
 
     //createcategory
     public function createCategory(Request $request){
+        $validator = Validator::make($request->all(), [
+            'categoryName'=> 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
         $data = [
             'category_name' =>  $request->categoryName,
         ];
@@ -73,7 +82,7 @@ class CategoryController extends Controller
         return view('admin.category.list')->with(['categories'=>$data]);
     }
 
-   
+
 
    //profile
    public function profile(){

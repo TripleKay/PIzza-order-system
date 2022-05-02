@@ -8,7 +8,7 @@
    <section class="content">
      <div class="container-fluid">
        <div class="row mt-5">
-         <div class="col-4">
+         <div class="col-4  offset-4">
            <div class="card ">
 
              <!-- /.card-header -->
