@@ -29,9 +29,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         if(Auth::check()){
             if(Auth::user()->role == 'admin'){
-                return redirect()->route('admin#index');
+                return redirect()->route('admin#profile');
             }else if(Auth::user()->role == 'user'){
-                return redirect()->route('user#index');
+                return redirect()->route('user#profile');
             }
         }
     })->name('dashboard');
@@ -56,6 +56,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
    Route::get('infoPizza/{id}',[PizzaController::class,'infoPizza'])->name('admin#infoPizza');
    Route::get('editPizza/{id}',[PizzaController::class,'editPizza'])->name('admin#editPizza');
    Route::post('updatePizza/{id}',[PizzaController::class,'updatePizza'])->name('admin#updatePizza');
+   Route::post('pizza',[PizzaController::class,'searchPizza'])->name('admin#searchPizza');
 });
 
 Route::group(['prefix'=>'user'],function(){

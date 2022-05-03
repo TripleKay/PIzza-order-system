@@ -23,6 +23,19 @@ class PizzaController extends Controller
         return view('admin.pizza.list')->with(['pizzas'=>$data,'emptyStatus' => $emptyStatus]);
    }
 
+   //search pizza
+   public function searchPizza(Request $request){
+        $data = Pizza::orWhere('pizza_name','like','%'.$request->search.'%')
+                        ->orWhere('price','like','%'.$request->search.'%')
+                        ->paginate(7);
+        if( count($data) == 0){
+            $emptyStatus = 0;
+        }else{
+            $emptyStatus = 1;
+        }
+        return view('admin.pizza.list')->with(['pizzas'=>$data,'emptyStatus' => $emptyStatus]);
+   }
+
    //add pizza
    public function addPizza(){
        $data = Category::get();

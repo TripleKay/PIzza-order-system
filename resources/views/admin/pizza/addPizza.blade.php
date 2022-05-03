@@ -10,7 +10,7 @@
           <div class="col-6 offset-3">
             <div class="card shadow">
               <!-- /.card-header -->
-             <div class="card-header text-center">
+             <div class="card-header bg-primary">
                 <h3 class="mb-0"> Add Pizza</h3>
              </div>
               <!-- /.card-body -->

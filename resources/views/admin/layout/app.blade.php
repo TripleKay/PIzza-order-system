@@ -20,8 +20,7 @@
   </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="#" class="brand-link">
-
-      <span class="brand-text font-weight-light">Pizza Order System </span>
+      <span class="brand-text font-weight-bold">Pizza Order System </span>
     </a>
     <div class="sidebar">
       <nav class="mt-2">

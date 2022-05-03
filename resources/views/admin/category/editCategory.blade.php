@@ -8,11 +8,11 @@
    <section class="content">
      <div class="container-fluid">
        <div class="row mt-5">
-         <div class="col-4">
-           <div class="card ">
+         <div class="col-4 offset-4">
+           <div class="card shadow">
 
              <!-- /.card-header -->
-            <div class="card-header text-center">
+            <div class="card-header bg-primary">
                <h3 class="mb-0"> Edit Category</h3>
             </div>
              <!-- /.card-body -->

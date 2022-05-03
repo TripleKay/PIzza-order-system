@@ -17,7 +17,7 @@
                </button>
              </div>
             @endif
-           <div class="card">
+           <div class="card shadow">
              <div class="card-header">
                <h3 class="card-title">
                  <a href="{{ route('admin#addCategory') }}" class="btn btn-primary">Add Category</a>
@@ -40,31 +40,33 @@
              </div>
 
              <!-- /.card-header -->
-             <div class="card-body table-responsive p-0">
-               <table class="table table-hover text-nowrap text-center table-border">
-                 <thead>
-                   <tr>
-                     <th>ID</th>
-                     <th>Category Name</th>
-                     <th>Product Count</th>
-                     <th>Action</th>
-                   </tr>
-                 </thead>
-                 <tbody>
-                     @foreach ($categories as $item)
-                     <tr>
-                        <td>{{ $item->category_id }}</td>
-                        <td>{{ $item->category_name }}</td>
-                        <td>1</td>
-                        <td>
-                          <a href="{{ route('admin#editCategory',$item->category_id) }}" class="btn btn-sm bg-info text-white"><i class="fas fa-edit"></i></a>
-                          <a href="{{ route('admin#deleteCategory',$item->category_id) }}" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></a>
-                        </td>
+             <div class="card-body">
+               <div class="table-responsive">
+                <table class="table table-hover text-nowrap table-bordered">
+                    <thead>
+                      <tr>
+                        <th>ID</th>
+                        <th>Category Name</th>
+                        <th>Product Count</th>
+                        <th>Action</th>
                       </tr>
-                     @endforeach
-                 </tbody>
+                    </thead>
+                    <tbody>
+                        @foreach ($categories as $item)
+                        <tr>
+                           <td>{{ $item->category_id }}</td>
+                           <td>{{ $item->category_name }}</td>
+                           <td>1</td>
+                           <td>
+                             <a href="{{ route('admin#editCategory',$item->category_id) }}" class="btn btn-sm bg-info text-white"><i class="fas fa-edit"></i></a>
+                             <a href="{{ route('admin#deleteCategory',$item->category_id) }}" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></a>
+                           </td>
+                         </tr>
+                        @endforeach
+                    </tbody>
 
-               </table>
+                  </table>
+               </div>
 
              </div>
              <!-- /.card-body -->
