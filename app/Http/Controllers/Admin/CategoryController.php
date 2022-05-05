@@ -82,12 +82,4 @@ class CategoryController extends Controller
         return view('admin.category.list')->with(['categories'=>$data]);
     }
 
-
-
-   //profile
-   public function profile(){
-    $id = auth()->user()->id;
-    $userData = User::where('id',$id)->first();
-    return view('admin.profile.index')->with(['userData'=>$userData]);
-}
 }

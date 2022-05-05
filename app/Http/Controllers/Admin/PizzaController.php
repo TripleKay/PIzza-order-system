@@ -120,13 +120,11 @@ class PizzaController extends Controller
             $newFileName = uniqid().'_'.$newFile->getClientOriginalName();
             $newFile->move(public_path().'/uploads/',$newFileName);
             $updateData['image'] = $newFileName;
-            Pizza::where('pizza_id',$id)->update($updateData);
 
-            return redirect()->route('admin#pizza')->with(['success'=>'Pizza Updated...']);
-        }else{
-            Pizza::where('pizza_id',$id)->update($updateData);
-            return redirect()->route('admin#pizza')->with(['success'=>'Pizza Updated...']);
         }
+        Pizza::where('pizza_id',$id)->update($updateData);
+        return redirect()->route('admin#pizza')->with(['success'=>'Pizza Updated...']);
+
    }
 
    //delete pizza

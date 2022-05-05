@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PizzaController;
 use App\Http\Controllers\Admin\CategoryController;
 
@@ -38,8 +39,7 @@ Route::middleware([
 });
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
-   Route::get('/',[CategoryController::class,'index'])->name('admin#index');
-   Route::get('profile',[CategoryController::class,'profile'])->name('admin#profile');
+   Route::get('profile',[AdminController::class,'profile'])->name('admin#profile');
 
    Route::get('category',[CategoryController::class,'category'])->name('admin#category');
    Route::get('addCategory',[CategoryController::class,'addCategory'])->name('admin#addCategory');

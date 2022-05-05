@@ -40,7 +40,7 @@
               <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover text-nowrap table-bordered">
-                        <thead>
+                        <thead class="bg-light">
                           <tr>
                             <th>ID</th>
                             <th>Pizza Name</th>
@@ -66,7 +66,7 @@
                                   <td>
                                   <img src="{{ asset('uploads/'.$item->image) }}" class="img-thumbnail" width="100px">
                                   </td>
-                                  <td>{{ $item->price }}kyats</td>
+                                  <td>{{ $item->price }} kyats</td>
                                   <td>
                                       @if ($item->publish_status == 1)
                                           Publish
