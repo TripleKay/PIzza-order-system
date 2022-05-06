@@ -38,10 +38,19 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{ route('admin#userList') }}" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                User List
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="{{ route('admin#category') }}" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-                Category
+                Category List
 
               </p>
             </a>
@@ -51,16 +60,8 @@
             <a href="{{ route('admin#pizza') }}" class="nav-link">
               <i class="nav-icon fas fa-pizza-slice"></i>
               <p>
-                Pizza
+                Pizza List
 
-              </p>
-            </a>
-          </li>
-         <li class="nav-item">
-            <a href="user.html" class="nav-link">
-            <i class="fas fa-users nav-icon"></i>
-              <p>
-                User
               </p>
             </a>
           </li>
@@ -83,14 +84,27 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-sign-out-alt nav-icon"></i>
               <p>
                 Logout
               </p>
             </a>
+          </li> --}}
+
+          <li class="nav-item">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <div class="nav-link">
+                    <button class="w-100 btn btn-secondary" type="submit">
+                        <i class="fas fa-sign-out-alt nav-icon"></i>
+                        <p>Logout</p>
+                    </button>
+                </div>
+            </form>
           </li>
+
         </ul>
       </nav>
     </div>

@@ -13,13 +13,13 @@ class CategoryController extends Controller
 {
     //category
     public function category(){
-        $data = Category::paginate(2);
+        $data = Category::paginate(5);
         return view('admin.category.list')->with(['categories'=>$data]);
     }
 
     //searchcateogry
     public function searchCategory(Request $request){
-        $data = Category::where('category_name','like','%'.$request->search.'%')->paginate(2);
+        $data = Category::where('category_name','like','%'.$request->search.'%')->paginate(5);
         $data->appends($request->all());//fixed search error when paginate
         return view('admin.category.list')->with(['categories'=>$data]);
     }

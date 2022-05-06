@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PizzaController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -60,6 +60,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
    Route::get('editPizza/{id}',[PizzaController::class,'editPizza'])->name('admin#editPizza');
    Route::post('updatePizza/{id}',[PizzaController::class,'updatePizza'])->name('admin#updatePizza');
    Route::get('pizza/search',[PizzaController::class,'searchPizza'])->name('admin#searchPizza');
+
+   Route::get('userList',[UserController::class,'userList'])->name('admin#userList');
+   Route::get('adminList',[UserController::class,'adminList'])->name('admin#adminList');
+   Route::get('userList/search',[UserController::class,'searchUserList'])->name('admin#searchUserList');
+   Route::get('adminList/search',[UserController::class,'searchAdminList'])->name('admin#searchAdminList');
+   Route::get('deleteUser/{id}',[UserController::class,'deleteUser'])->name('admin#deleteUser');
 });
 
 Route::group(['prefix'=>'user'],function(){
