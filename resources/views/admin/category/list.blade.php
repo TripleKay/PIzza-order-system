@@ -24,7 +24,7 @@
                </h3>
 
                <div class="card-tools">
-                <form action="{{ route('admin#searchCategory') }}" method="POST">
+                <form action="{{ route('admin#searchCategory') }}" method="GET">
                   @csrf
                   <div class="input-group my-0" style="width: 200px;">
                     <input type="text" name="search" class="form-control float-right" placeholder="Search">
@@ -68,10 +68,10 @@
                   </table>
                </div>
 
+               {{ $categories->links() }}
              </div>
              <!-- /.card-body -->
            </div>
-           {{ $categories->links() }}
            <!-- /.card -->
          </div>
        </div>

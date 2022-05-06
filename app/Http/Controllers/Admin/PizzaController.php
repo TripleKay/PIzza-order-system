@@ -28,6 +28,9 @@ class PizzaController extends Controller
         $data = Pizza::orWhere('pizza_name','like','%'.$request->search.'%')
                         ->orWhere('price','like','%'.$request->search.'%')
                         ->paginate(7);
+
+        $data->appends($request->all());//fixed search error when paginate
+        
         if( count($data) == 0){
             $emptyStatus = 0;
         }else{

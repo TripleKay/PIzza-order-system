@@ -23,7 +23,7 @@
                    <i class="fas fa-plus mr-2"></i> Add Pizza
                 </a>
                 <div class="card-tools">
-                    <form action="{{ route('admin#searchPizza') }}" method="POST">
+                    <form action="{{ route('admin#searchPizza') }}" method="GET">
                         @csrf
                         <div class="input-group my-0" style="width: 200px;">
                           <input type="text" name="search" class="form-control float-right" placeholder="Search">

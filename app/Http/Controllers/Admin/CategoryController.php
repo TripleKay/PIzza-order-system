@@ -11,14 +11,16 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
-    //index
-    public function index(){
-        return view('admin.home');
+    //category
+    public function category(){
+        $data = Category::paginate(2);
+        return view('admin.category.list')->with(['categories'=>$data]);
     }
 
     //searchcateogry
     public function searchCategory(Request $request){
-        $data = Category::where('category_name','like','%'.$request->search.'%')->paginate(5);
+        $data = Category::where('category_name','like','%'.$request->search.'%')->paginate(2);
+        $data->appends($request->all());//fixed search error when paginate
         return view('admin.category.list')->with(['categories'=>$data]);
     }
 
@@ -76,10 +78,6 @@ class CategoryController extends Controller
         return redirect()->route('admin#category')->with(['success'=>'Category Added.....']);
     }
 
-    //category
-    public function category(){
-        $data = Category::paginate(5);
-        return view('admin.category.list')->with(['categories'=>$data]);
-    }
+
 
 }

@@ -50,7 +50,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
    Route::get('edit/{id}',[CategoryController::class,'editCategory'])->name('admin#editCategory');
    Route::post('update',[CategoryController::class,'updateCategory'])->name('admin#updateCategory');
    Route::get('deleteCategory/{id}',[CategoryController::class,'deleteCategory'])->name('admin#deleteCategory');
-   Route::post('category',[CategoryController::class,'searchCategory'])->name('admin#searchCategory');
+   Route::get('category/search',[CategoryController::class,'searchCategory'])->name('admin#searchCategory');
 
    Route::get('pizza',[PizzaController::class,'pizza'])->name('admin#pizza');
    Route::get('addPizza',[PizzaController::class,'addPizza'])->name('admin#addPizza');
@@ -59,7 +59,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
    Route::get('infoPizza/{id}',[PizzaController::class,'infoPizza'])->name('admin#infoPizza');
    Route::get('editPizza/{id}',[PizzaController::class,'editPizza'])->name('admin#editPizza');
    Route::post('updatePizza/{id}',[PizzaController::class,'updatePizza'])->name('admin#updatePizza');
-   Route::post('pizza',[PizzaController::class,'searchPizza'])->name('admin#searchPizza');
+   Route::get('pizza/search',[PizzaController::class,'searchPizza'])->name('admin#searchPizza');
 });
 
 Route::group(['prefix'=>'user'],function(){
