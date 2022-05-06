@@ -32,7 +32,7 @@ Route::middleware([
             if(Auth::user()->role == 'admin'){
                 return redirect()->route('admin#profile');
             }else if(Auth::user()->role == 'user'){
-                return redirect()->route('user#profile');
+                return redirect()->route('user#index');
             }
         }
     })->name('dashboard');
@@ -40,6 +40,9 @@ Route::middleware([
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
    Route::get('profile',[AdminController::class,'profile'])->name('admin#profile');
+   Route::post('updateProfile/{id}',[AdminController::class,'updateProfile'])->name('admin#updateProfile');
+   Route::get('changePassword',[AdminController::class,'changePasswordPage'])->name('admin#changePasswordPage');
+   Route::post('changePassword/{id}',[AdminController::class,'changePassword'])->name('admin#changePassword');
 
    Route::get('category',[CategoryController::class,'category'])->name('admin#category');
    Route::get('addCategory',[CategoryController::class,'addCategory'])->name('admin#addCategory');
