@@ -18,7 +18,9 @@
             @endif
             <div class="card shadow">
               <div class="card-header">
-
+                <button type="button" class="btn btn-outline-primary font-weight-bold mr-2">
+                    Total - <span class="badge badge-danger"> {{ $pizzas->total() }}</span>
+                  </button>
                 <a href="{{ route('admin#addPizza') }}" class="btn btn-primary">
                    <i class="fas fa-plus mr-2"></i> Add Pizza
                 </a>

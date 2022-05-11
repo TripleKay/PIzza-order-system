@@ -19,10 +19,10 @@
             @endif
            <div class="card shadow">
              <div class="card-header">
-               <h3 class="card-title">
+                <button type="button" class="btn btn-outline-primary font-weight-bold mr-2">
+                    Total - <span class="badge badge-danger"> {{ $categories->total() }}</span>
+                  </button>
                  <a href="{{ route('admin#addCategory') }}" class="btn btn-primary">Add Category</a>
-               </h3>
-
                <div class="card-tools">
                 <form action="{{ route('admin#searchCategory') }}" method="GET">
                   @csrf
@@ -56,7 +56,7 @@
                         <tr>
                            <td>{{ $item->category_id }}</td>
                            <td>{{ $item->category_name }}</td>
-                           <td>1</td>
+                           <td>{{ $item->count }}</td>
                            <td>
                              <a href="{{ route('admin#editCategory',$item->category_id) }}" class="btn btn-sm bg-info text-white"><i class="fas fa-edit"></i></a>
                              <a href="{{ route('admin#deleteCategory',$item->category_id) }}" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></a>
