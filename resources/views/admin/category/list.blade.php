@@ -56,7 +56,15 @@
                         <tr>
                            <td>{{ $item->category_id }}</td>
                            <td>{{ $item->category_name }}</td>
-                           <td>{{ $item->count }}</td>
+                           <td>
+                                @if ($item->count == 0)
+                                    {{ $item->count }}
+                                @else
+                                    <a href="{{ route('admin#categoryItem',$item->category_id) }}" class="">{{ $item->count }}</a>
+                                @endif
+
+
+                            </td>
                            <td>
                              <a href="{{ route('admin#editCategory',$item->category_id) }}" class="btn btn-sm bg-info text-white"><i class="fas fa-edit"></i></a>
                              <a href="{{ route('admin#deleteCategory',$item->category_id) }}" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></a>

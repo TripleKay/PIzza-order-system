@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Pizza;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -20,6 +21,15 @@ class CategoryController extends Controller
                 ->paginate(5);
                 // dd($data->toArray());
         return view('admin.category.list')->with(['categories'=>$data]);
+    }
+
+    // category item
+    public function categoryItem($id){
+        $data = Pizza::select('pizzas.*','categories.category_name as categoryName')
+                ->leftJoin('categories','categories.category_id','pizzas.category_id')
+                ->where('categories.category_id',$id)
+                ->paginate(5);
+        return view('admin.category.item')->with(['pizzas'=>$data]);
     }
 
     //searchcateogry
