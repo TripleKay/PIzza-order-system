@@ -70,5 +70,5 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 });
 
 Route::group(['prefix'=>'user'],function(){
-    Route::get('/',[UserController::class,'index'])->name('user#index');
+    Route::get('/',[App\Http\Controllers\UserController::class,'index'])->name('user#index');
 });

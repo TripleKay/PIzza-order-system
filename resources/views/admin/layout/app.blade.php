@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pizza Order System</title>
-
+  {{-- fav icon  --}}
+  <link rel="icon" type="image/x-icon" href="{{ asset('customer/img/pizza.png') }}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}">
@@ -20,8 +21,9 @@
     </ul>
   </nav>
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="#" class="brand-link">
-      <span class="brand-text font-weight-bold">Pizza Order System </span>
+    <a href="{{ route('user#index') }}" class="brand-link">
+      <img src="{{ asset('customer/img/pizza.png') }}" alt="Logo" class="brand-image" >
+      <span class="brand-text h6 mb-0 font-weight-bold">Pizza Order System</span>
     </a>
     <div class="sidebar">
       <nav class="mt-2">

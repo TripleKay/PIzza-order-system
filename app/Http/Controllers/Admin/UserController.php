@@ -8,10 +8,6 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    //index
-    public function index(){
-        return view('user.home');
-    }
     //user list
     public function userList(){
         $userData = User::where('role','user')->paginate(5);

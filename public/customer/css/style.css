@@ -1,0 +1,195 @@
+
+/* -------------------------------basic setup------------------------------------- */
+.long-para{
+    line-height: 28px;
+    word-spacing: 2.5px;
+}
+/* -------------------------------home-section------------------------------------- */
+.home-section{
+    background-color: #EB904A30;
+    overflow: hidden;
+}
+.img-box-color{
+    width: 350px;
+    height: 400px;
+    background-color: #EB904A30;
+    position: absolute;
+    top: -300px;
+    left: 150px;
+}
+
+.banner-img{
+    position: relative;
+    width: 750px;
+}
+
+.right-banner-container{
+    position: relative;
+}
+.navbar{
+    background-color: #FFF;
+    z-index: 99999;
+}
+.banner-title{
+    font-size: 50px;
+}
+.banner-small-title::before{
+    content: '';
+    display: inline-block;
+    width: 60px;
+    height: 3px;
+    background-color: #EB904A;
+    margin-right: 10px;
+}
+.nav-link {
+    border-bottom: 3px solid transparent;
+    border-radius: 3px;
+    margin-left: 30px;
+}
+.nav-link.active {
+    border-bottom: 3px solid #EB904A;
+}
+.nav-link:hover{
+    border-bottom: 3px solid #EB904A;
+   
+    transition: .3s linear;
+}
+.btn-outline-primary:hover{
+    color: #fff !important;
+}
+.home-section  .btn{
+    padding: 10px 30px !important;
+}
+
+/* -------------------------------pizza-section------------------------------------- */
+.pizza-section{
+    /* background-color: #F5C12030; */
+    background-color: #FBEADD;
+    padding: 80px 0px;
+}
+.pizza-card{
+    border-radius: 20px !important;
+    border-color: transparent !important;
+    margin: 15px 5px;
+}
+.card-img-container {
+    border-radius: 20px;
+    background-color: #E7E2E2;
+}
+.pizza-dis span{
+    font-size: 13px;
+}
+.pizza-desc{
+    font-size: 15px;
+}
+.pizza-search-bar {
+    border: 1px solid #EB904A;
+}
+.pizza-search-bar button:focus,
+.pizza-search-bar .form-control:focus {
+    box-shadow: none;
+}
+.pizza-search-bar .btn:hover i{
+    color: #2e2e2e !important;
+    transition: .3s linear;
+}
+.pizza-right-container {
+    border-radius: 10px !important;
+    position: sticky !important;
+    top: 30px !important;
+}
+.category{
+    border-bottom: 1px solid #88888850 !important;
+}
+.category:hover,
+.category.active {
+    border-bottom: 1px solid transparent !important;
+    background-color: #EB904A !important;
+    color: #fff !important;
+}
+.category:hover span,
+.category.active span{
+    background-color: #fff !important;
+    color: #2e2e2e;
+}
+
+.ribbon {
+    /* background-color: #00a8f1; */
+    background-color: #4b4b4b;
+    color: #fff !important;
+    box-shadow: 0 1px 0px rgba(0, 0, 0, 0.07);
+    border-radius: 0;
+    color: #000;
+    display: block;
+    font-size: 20px;
+    position: absolute;
+    padding: 7px 15px;
+    top: 25px;
+    left: -15px;
+}
+
+.ribbon::after {
+    content: "";
+    position: absolute;
+    top: auto;
+    left: 5px;
+    right: auto;
+    bottom: -10px;
+    background-color: transparent;
+    border: 10px solid transparent;
+    /* border-bottom: 10px solid #0079be; */
+    border-bottom: 10px solid #2e2e2e;
+    transform: rotate(45deg);
+    height: 20px;
+    width: 20px;
+}
+
+.contact-section {
+    padding: 80px 0px;
+}
+/* -------------------------------Responsive-------------------------------------   */
+/* // Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) { 
+    html{
+        overflow-x: hidden;
+   }
+ }
+
+/* // Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) { 
+    html{
+        overflow-x: hidden;
+   }
+   
+   
+ }
+
+/* // Large devices (desktops, 992px and up) */
+@media (max-width: 992px) { 
+    html{
+        overflow-x: hidden;
+   }
+   .banner-title{
+    font-size: 40px;
+    }
+    .banner-small-title{
+        font-size: 17px;
+    }
+    .banner-small-title::before{
+        width: 45px;
+    }
+    .img-box-color{
+        width: 250px;
+        top: -300px;
+        left: 70px;
+    }
+ }
+
+/* // Extra large devices (large desktops, 1200px and up) */
+@media (max-width: 1200px) { 
+    .nav-link {   
+        margin-left: 0px;
+    }
+ }
+
+
