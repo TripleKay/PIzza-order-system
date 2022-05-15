@@ -44,6 +44,7 @@
               <i class="nav-icon fas fa-users"></i>
               <p>
                 User List
+                <span class="badge badge-info right">{{ App\Models\User::count() }}</span>
               </p>
             </a>
           </li>
@@ -52,8 +53,8 @@
             <a href="{{ route('admin#category') }}" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-                Category List
-
+                  Category List
+                  <span class="badge badge-info right">{{ App\Models\Category::count() }}</span>
               </p>
             </a>
           </li>
@@ -63,29 +64,30 @@
               <i class="nav-icon fas fa-pizza-slice"></i>
               <p>
                 Pizza List
-
+                <span class="badge badge-info right">{{ App\Models\Pizza::count() }}</span>
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="order.html" class="nav-link">
-              <i class="fas fa-book nav-icon"></i>
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-pizza-slice"></i>
               <p>
-                Order
+                Order List
+                <span class="badge badge-info right">1</span>
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="carrier.html" class="nav-link">
-              <i class="fas fa-biking nav-icon"></i>
+            <a href="{{ route('admin#contactList') }}" class="nav-link">
+              <i class="fas fa-file-contract nav-icon"></i>
               <p>
-                Carrier
+                Contact
+                <span class="badge badge-info right">{{ App\Models\Contact::count() }}</span>
               </p>
             </a>
           </li>
-
           {{-- <li class="nav-item">
             <a href="" class="nav-link">
               <i class="fas fa-sign-out-alt nav-icon"></i>

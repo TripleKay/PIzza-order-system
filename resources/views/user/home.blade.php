@@ -27,7 +27,7 @@
     <section class="service-section py-5 bg-white" id="service-section" style="min-height: 300px;">
         <div class="container">
             <div class="row">
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <div class="service-box card bg-white border-0" style="border-radius: 30px ;">
                         <div class="card-body text-center">
                             <img src="{{ asset('customer/img/bike.png') }}" class="img-fluid" alt="" srcset="" style="width: 100px ;">
@@ -36,7 +36,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <div class="service-box card bg-white border-0" style="border-radius: 30px ;">
                         <div class="card-body text-center">
                             <img src="{{ asset('customer/img/order.jpg') }}" class="img-fluid" alt="" srcset="" style="width: 100px ;">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-12 col-md-4">
                     <div class="service-box card bg-white border-0" style="border-radius: 30px ;">
                         <div class="card-body text-center">
                             <img src="{{ asset('customer/img/pizza.png') }}" class="img-fluid" alt="" srcset="" style="width: 100px ;">
@@ -61,7 +61,7 @@
     <section class="pizza-section" id="pizza-section">
         <div class="container">
             <div class="row">
-                <div class="col-9">
+                <div class="col-12 col-md-9">
                     <div class="pizza-left-container">
                         <div class="row">
                             <div class="col-12">
@@ -71,36 +71,42 @@
                             </div>
                         </div>
                         <!-- -------------------------------pizza-box-container------------------------------------- -->
-                        <div class="row pizza-box-container my-4">
+                        <div class="pizza-box-container my-4">
                             <div class="row">
                                 <!-- -------------------------------pizza-boxs------------------------------------- -->
-                                @foreach ($pizzas as $item)
-                                    <div class="col-4">
-                                        <div class="card pizza-card position-relative">
-                                            <!-- -------------------------------ribbon------------------------------------- -->
-                                            @if ($item->buy_one_get_one_status == 1)
-                                                <div class="ribbon h6 mb-0">Buy 1 Get 1</div>
-                                            @endif
-                                            <div class="card-body">
-                                                <div class="card-img-container p-2">
-                                                    <img src="{{ asset('uploads/'.$item->image) }}" class="img-fluid" alt="" srcset="">
-                                                </div>
-                                                <div class="mt-4">
-                                                    <h5>{{ $item->pizza_name }}</h5>
-                                                    <div class="d-flex justify-content-between pizza-dis my-2">
-                                                        <span class="">Discount: {{ $item->discount_price }} Ks</span>
-                                                        <span class="">Waiting Time: {{ $item->waiting_time }} min</span>
+                                @if ($emptyStatus == 0)
+                                    <div class="col-12 d-flex align-items-center justify-content-center" style="min-height: 300px">
+                                        <div class="text-danger p-3 bg-white rounded shadow">There is no Pizza.</div>
+                                    </div>
+                                @else
+                                    @foreach ($pizzas as $item)
+                                        <div class="col-6 col-md-4">
+                                            <div class="card pizza-card position-relative">
+                                                <!-- -------------------------------ribbon------------------------------------- -->
+                                                @if ($item->buy_one_get_one_status == 1)
+                                                    <div class="ribbon h6 mb-0">Buy 1 Get 1</div>
+                                                @endif
+                                                <div class="card-body">
+                                                    <div class="card-img-container p-2">
+                                                        <img src="{{ asset('uploads/'.$item->image) }}" class="img-fluid" alt="" srcset="">
                                                     </div>
-                                                    <div class="d-flex justify-content-between mb-3">
-                                                        <div class="h5 mb-0">{{ $item->price }} Ks</div>
-                                                        <a href="" class="">View Detail</a>
+                                                    <div class="mt-4">
+                                                        <h5>{{ $item->pizza_name }}</h5>
+                                                        <div class="d-flex justify-content-between pizza-dis my-2">
+                                                            <span class="">Discount: {{ $item->discount_price }} Ks</span>
+                                                            <span class="">Waiting Time: {{ $item->waiting_time }} min</span>
+                                                        </div>
+                                                        <div class="d-flex justify-content-between mb-3">
+                                                            <div class="h5 mb-0">{{ $item->price }} Ks</div>
+                                                            <a href="{{ route('user#pizzaDetail',$item->pizza_id) }}" class="">View Detail</a>
+                                                        </div>
+                                                        <a  href="" class="btn btn-primary rounded-pill w-100 text-white">Order Now</a>
                                                     </div>
-                                                    <button class="btn btn-primary rounded-pill w-100 text-white">Order Now</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                @endif
                                 <!-- -------------------------------pizza-boxs------------------------------------- -->
 
                             </div>
@@ -109,13 +115,14 @@
 
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 col-md-3">
                     <!-- -------------------------------pizza-right-container------------------------------------- -->
                     <div class="pizza-right-container card border-0  bg-white p-3 position-sticky">
                         <!-- -------------------------------search bar------------------------------------- -->
-                        <form action="">
+                        <form action="{{ route('user#searchPizza') }}" method="GET">
+                            {{-- @csrf --}}
                             <div class="d-flex pizza-search-bar" style="border-radius: 10px">
-                                <input type="search" class="form-control  bg-transparent border-0" placeholder="search pizza ....">
+                                <input type="text" name="search" class="form-control  bg-transparent border-0" placeholder="search pizza ....">
                                 <button class="btn px-1 pe-2"><i class="fas fa-search text-primary" style="font-size: 20px ;"></i>
                                 </button>
                             </div>
@@ -125,26 +132,17 @@
                             <h5 class="mb-4">Category Lists</h5>
                             <div class="">
 
-                                <a href="" class="btn bg-white d-flex justify-content-between mb-2 category active py-2">
-                                    <p class="mb-0">Cheese Pizza</p>
-                                    <span class="badge bg-danger rounded-pill">13</span>
+                                <a href="{{ url('user#pizza-section') }}" class="btn bg-white d-flex justify-content-between mb-2 category active py-2">
+                                    <p class="mb-0">All Categories</p>
+                                    {{-- <span class="badge bg-info rounded-pill">{{ $pizzas->count() }}</span>  --}}
                                 </a>
-                                <a href="" class="btn bg-white d-flex justify-content-between mb-2 category py-2">
-                                    <p class="mb-0">Cheese Pizza</p>
-                                    <span class="badge bg-info rounded-pill">13</span>
-                                </a>
-                                <a href="" class="btn bg-white d-flex justify-content-between mb-2 category py-2">
-                                    <p class="mb-0">Cheese Pizza</p>
-                                    <span class="badge bg-info rounded-pill">13</span>
-                                </a>
-                                <a href="" class="btn bg-white d-flex justify-content-between mb-2 category py-2">
-                                    <p class="mb-0">Cheese Pizza</p>
-                                    <span class="badge bg-info rounded-pill">13</span>
-                                </a>
-                                <a href="" class="btn bg-white d-flex justify-content-between mb-2 category py-2">
-                                    <p class="mb-0">Cheese Pizza</p>
-                                    <span class="badge bg-info rounded-pill">13</span>
-                                </a>
+                                @foreach ($categories as $item)
+                                    <a href="{{ route('user#searchCategory',$item->category_id) }}" class="btn bg-white d-flex justify-content-between mb-2 category py-2">
+                                        <p class="mb-0">{{$item->category_name}}</p>
+                                        {{-- <span class="badge bg-danger rounded-pill">5</span> --}}
+                                    </a>
+                                @endforeach
+
                             </div>
                         </div>
                         <!-- -------------------------------price------------------------------------- -->
@@ -163,24 +161,8 @@
                             <input type="date" class="form-control">
                         </div>
                         <!-- -------------------------------pagination------------------------------------- -->
-                        <hr>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                            </ul>
-                        </nav>
+                         <hr>
+                        {{ $pizzas->links() }}
 
                     </div>
 
@@ -203,7 +185,7 @@
                     <div class="card shadow-lg border-0 overflow-hidden" style="border-radius: 10px !important;">
                         <div class="">
                             <div class="row">
-                                <div class="col-5 bg-primary">
+                                <div class="col-12 col-md-5 bg-primary">
                                     <div class=" h-100 d-flex flex-column justify-content-center" style="border-radius: 10px ;">
                                         <div class="d-flex align-items-center bg-white mb-4 mx-5 p-3" style="border-radius: 10px ;">
                                             <i class="fas fa-phone"></i>
@@ -223,21 +205,37 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-7 bg-white">
-                                    <form action="" class="py-4 px-5">
+                                <div class="col-12 col-md-7 bg-white">
+                                    @if (Session::has('success'))
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <strong>{{ Session::get('success')}}</strong>
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    @endif
+                                    <form action="{{ route('user#createContact') }}" class="py-4 px-5" method="POST">
+                                        @csrf
                                         <div class="mb-3">
                                             <label for="" class="form-label">Your Name</label>
-                                            <input type="text" class="form-control" placeholder="enter your name ....">
+                                            <input type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="enter your name ....">
+                                            @if ($errors->has('name'))
+                                                <small class="text-danger">{{ $errors->first('name') }}</small>
+                                            @endif
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Email Address</label>
-                                            <input type="text" class="form-control" placeholder="enter your email ....">
+                                            <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="enter your email ....">
+                                            @if ($errors->has('email'))
+                                                <small class="text-danger">{{ $errors->first('email') }}</small>
+                                            @endif
                                         </div>
                                         <div class="mb-3">
                                             <label for="" class="form-label">Message</label>
-                                            <textarea name="" id=""  rows="5" class="form-control" placeholder="say something ....."></textarea>
+                                            <textarea name="message" id=""  rows="5" class="form-control" placeholder="say something .....">{{ old('message') }}</textarea>
+                                            @if ($errors->has('message'))
+                                                <small class="text-danger">{{ $errors->first('message') }}</small>
+                                            @endif
                                         </div>
-                                        <button class="btn btn-primary text-white shadow mt-3">Send <i class="fas fa-paper-plane ms-3"></i></button>
+                                        <button type="submit" class="btn btn-primary text-white shadow mt-3">Send <i class="fas fa-paper-plane ms-3"></i></button>
                                     </form>
                                 </div>
                             </div>

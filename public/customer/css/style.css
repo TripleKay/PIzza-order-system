@@ -51,7 +51,7 @@
 }
 .nav-link:hover{
     border-bottom: 3px solid #EB904A;
-   
+
     transition: .3s linear;
 }
 .btn-outline-primary:hover{
@@ -107,11 +107,11 @@
     background-color: #EB904A !important;
     color: #fff !important;
 }
-.category:hover span,
+/* .category:hover span,
 .category.active span{
     background-color: #fff !important;
     color: #2e2e2e;
-}
+} */
 
 .ribbon {
     /* background-color: #00a8f1; */
@@ -147,25 +147,36 @@
 .contact-section {
     padding: 80px 0px;
 }
+
 /* -------------------------------Responsive-------------------------------------   */
 /* // Small devices (landscape phones, 576px and up) */
-@media (max-width: 576px) { 
+@media (max-width: 576px) {
     html{
         overflow-x: hidden;
    }
+   .banner-img{
+    max-width: 550px;
+    }
+    .img-box-color{
+        width: 0px;
+        height: 0px;
+         top: 0px;
+        left: 0px;
+        display: none;
+    }
  }
 
 /* // Medium devices (tablets, 768px and up) */
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
     html{
         overflow-x: hidden;
    }
-   
-   
+
+
  }
 
 /* // Large devices (desktops, 992px and up) */
-@media (max-width: 992px) { 
+@media (max-width: 992px) {
     html{
         overflow-x: hidden;
    }
@@ -186,9 +197,18 @@
  }
 
 /* // Extra large devices (large desktops, 1200px and up) */
-@media (max-width: 1200px) { 
-    .nav-link {   
+@media (max-width: 1200px) {
+    .nav-link {
         margin-left: 0px;
+    }
+    .banner-img{
+        max-width: 550px;
+    }
+    .img-box-color{
+        width: 300px;
+        height: 400px;
+        top: -300px;
+        left: 100px;
     }
  }
 

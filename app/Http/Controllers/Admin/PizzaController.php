@@ -14,7 +14,7 @@ class PizzaController extends Controller
 {
     //pizza
     public function pizza(){
-        $data = Pizza::paginate(7);
+        $data = Pizza::paginate(5);
         if( count($data) == 0){
             $emptyStatus = 0;
         }else{
@@ -27,10 +27,10 @@ class PizzaController extends Controller
    public function searchPizza(Request $request){
         $data = Pizza::orWhere('pizza_name','like','%'.$request->search.'%')
                         ->orWhere('price','like','%'.$request->search.'%')
-                        ->paginate(7);
+                        ->paginate(5);
 
         $data->appends($request->all());//fixed search error when paginate
-        
+
         if( count($data) == 0){
             $emptyStatus = 0;
         }else{
