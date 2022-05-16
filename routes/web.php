@@ -77,8 +77,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 Route::group(['prefix'=>'user'],function(){
     Route::get('/',[App\Http\Controllers\UserController::class,'index'])->name('user#index');
     Route::get('pizza/detail/{id}',[App\Http\Controllers\UserController::class,'pizzaDetail'])->name('user#pizzaDetail');
-    Route::get('pizza/search',[App\Http\Controllers\UserController::class,'searchPizza'])->name('user#searchPizza');
     Route::get('category/search/{id}',[App\Http\Controllers\UserController::class,'searchCategory'])->name('user#searchCategory');
+    Route::get('search/item',[App\Http\Controllers\UserController::class,'searchPizza'])->name('user#searchPizza');
+    Route::get('search/pizzaItem',[App\Http\Controllers\UserController::class,'searchPizzaItem'])->name('user#searchPizzaItem');
 
-    Route::post('createContact',[ContactController::class,'createContact'])->name('user#createContact');
+    Route::post('contact/create/',[ContactController::class,'createContact'])->name('user#createContact');
 });

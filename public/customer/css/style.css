@@ -71,16 +71,18 @@
     border-radius: 20px !important;
     border-color: transparent !important;
     margin: 15px 5px;
+    transition: box-shadow .3s linear;
 }
 .card-img-container {
     border-radius: 20px;
     background-color: #E7E2E2;
+    transition: .3s linear;
 }
 .pizza-dis span{
     font-size: 13px;
 }
-.pizza-desc{
-    font-size: 15px;
+.pizza-card:hover{
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
 .pizza-search-bar {
     border: 1px solid #EB904A;

@@ -38,4 +38,49 @@ class UserController extends Controller
         $emptyStatus = count($pizzas) == 0 ? 0 : 1;
         return view('user.home')->with(['pizzas'=>$pizzas, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
     }
+
+    //search By price
+    public function searchPizzaItem(Request $request){
+
+        $minPrice = $request->minPrice;
+        $maxPrice = $request->maxPrice;
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+
+        $query = Pizza::select('*');
+
+        //for date
+        if(!is_null($startDate) && is_null($endDate)){
+            //have startDate
+            $query->whereDate('created_at','>=',$startDate);
+        }else if(is_null($startDate) && !is_null($endDate)){
+            //have endDate
+            $query->whereDate('created_at','<=',$endDate);
+        }else if(!is_null($startDate) && !is_null($endDate)){
+            //have both
+            $query->whereDate('created_at','>=',$startDate)
+                    ->whereDate('created_at','<=',$endDate);
+        }
+
+        //for price
+        if(!is_null($minPrice) && is_null($maxPrice)){
+            //have minPrice
+            $query->where('price','>=',$minPrice);
+        }else if(is_null($minPrice) && !is_null($maxPrice)){
+            //have maxPrice
+            $query->where('price','<=',$maxPrice);
+        }else if(!is_null($minPrice) && !is_null($maxPrice)){
+            //have both
+            $query->where('price','>=',$minPrice)
+                    ->where('price','<=',$maxPrice);
+        }
+
+        $query = $query->paginate(6);
+        $query->appends($request->all());
+
+        $emptyStatus = count($query ) == 0 ? 0 : 1;
+        $categories = Category::get();
+
+        return view('user.home')->with(['pizzas'=>$query, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
+   }
 }

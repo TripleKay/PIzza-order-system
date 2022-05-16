@@ -76,7 +76,10 @@
                                 <!-- -------------------------------pizza-boxs------------------------------------- -->
                                 @if ($emptyStatus == 0)
                                     <div class="col-12 d-flex align-items-center justify-content-center" style="min-height: 300px">
-                                        <div class="text-danger p-3 bg-white rounded shadow">There is no Pizza.</div>
+                                        <div class="text-danger p-3 bg-white  text-center" style="border-radius: 10px">
+                                            <img src="{{ asset('customer/img/pizza.png') }}" class="mb-3" alt="" srcset="" style="width: 80px;">
+                                            <h5>There is no Pizza.</h5>
+                                        </div>
                                     </div>
                                 @else
                                     @foreach ($pizzas as $item)
@@ -145,23 +148,30 @@
 
                             </div>
                         </div>
-                        <!-- -------------------------------price------------------------------------- -->
-                        <div class="mb-5">
-                            <h5 class="mb-4">Filter By Price</h5>
-                            <select name="" id="" class="form-control">
-                                <option value="">Select Price</option>
-                                <option value="">4000 Price</option>
+                        <form action="{{ route('user#searchPizzaItem') }}" method="GET">
+                            @csrf
+                            <!-- -------------------------------price------------------------------------- -->
+                            <div class="mb-3">
+                                <h5 class="mb-4">Filter By Price</h5>
 
-                            </select>
-                        </div>
-                        <!-- -------------------------------date------------------------------------- -->
-                        <div class="mb-5">
-                            <h5 class="mb-4">Filter By Date</h5>
-                            <input type="date" class="form-control mb-2">
-                            <input type="date" class="form-control">
-                        </div>
+                                <div class="d-flex">
+                                    <input type="number" name="minPrice" class="form-control" placeholder="min price">
+                                    <input type="number" name="maxPrice" class="form-control ms-1" placeholder="max price">
+                                </div>
+
+                            </div>
+                            <!-- -------------------------------date------------------------------------- -->
+                            <div class="mb-5">
+                                <h5 class="mb-4">Filter By Date</h5>
+                                <input type="date" name="startDate" class="form-control mb-2">
+                                <input type="date" name="endDate" class="form-control">
+                            </div>
+                            <button class="btn btn-outline-primary w-100" type="submit">Search <i class="fas fa-search ms-3"></i></button>
+                        </form>
                         <!-- -------------------------------pagination------------------------------------- -->
-                         <hr>
+                         @if ($pizzas->total() > 6)
+                            <hr>
+                         @endif
                         {{ $pizzas->links() }}
 
                     </div>
