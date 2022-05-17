@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use Carbon\Carbon;
+use App\Models\Order;
 use App\Models\Pizza;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -16,11 +20,7 @@ class UserController extends Controller
         return view('user.home')->with(['pizzas'=>$pizzas, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
     }
 
-    //pizza Detail page
-    public function pizzaDetail($id){
-        $data = Pizza::where('pizza_id',$id)->first();
-        return view('user.pizzaDetail')->with(['data'=>$data]);
-    }
+
 
     //search Pizza
     public function searchPizza(Request $request){
@@ -83,4 +83,54 @@ class UserController extends Controller
 
         return view('user.home')->with(['pizzas'=>$query, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
    }
+
+    //pizza Detail page
+    public function pizzaDetail($id){
+        $data = Pizza::where('pizza_id',$id)->first();
+        Session::put('PIZZA_INFO',$data);//for order page
+        return view('user.pizzaDetail')->with(['pizza'=>$data]);
+    }
+
+    //order
+    public function order(){
+        $pizzaInfo = Session::get('PIZZA_INFO');
+        return view('user.order')->with(['pizza'=>$pizzaInfo]);
+    }
+
+    //place order
+    public function placeOrder(Request $request){
+        $validator = Validator::make($request->all(), [
+            'pizzaCount'=> 'required|numeric|min:1|max:10',
+            'paymentType'=> 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        $userId = auth()->user()->id;
+        $pizzaInfo = Session::get('PIZZA_INFO');
+        $pizzaCount = $request->pizzaCount;
+        $orderData = $this->requestOrderData($pizzaInfo,$userId,$request);
+
+        for( $i = 0; $i < $pizzaCount ; $i++ ){
+            Order::create($orderData);
+        }
+
+        $waitingtime = $pizzaInfo['waiting_time'] * $pizzaCount;
+        return back()->with(['totalTime'=>$waitingtime]);
+    }
+
+    //get order data
+    public function requestOrderData($pizzaInfo,$userId,$request){
+        return [
+            'customer_id'=> $userId,
+            'pizza_id' => $pizzaInfo['pizza_id'],
+            'carrier_id' => 0,
+            'payment_status' => $request->paymentType,
+            'order_time' => Carbon::now()
+        ];
+    }
 }

@@ -82,4 +82,7 @@ Route::group(['prefix'=>'user'],function(){
     Route::get('search/pizzaItem',[App\Http\Controllers\UserController::class,'searchPizzaItem'])->name('user#searchPizzaItem');
 
     Route::post('contact/create/',[ContactController::class,'createContact'])->name('user#createContact');
+
+    Route::get('order',[App\Http\Controllers\UserController::class,'order'])->name('user#order');
+    Route::post('order',[App\Http\Controllers\UserController::class,'placeOrder'])->name('user#placeOrder');
 });

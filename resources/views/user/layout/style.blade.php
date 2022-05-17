@@ -125,5 +125,20 @@
     <script src="{{ asset('customer/node_modules/jquery/dist/jquery.min.js') }}"></script>
     <!-- -------------------------------bootstrap------------------------------------- -->
     <script src="{{ asset('customer/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script>
+
+        // $(window).scroll(function(){
+        //     $(".pizza-right-container").removeClass("active");
+        // });
+        /* -------------------------------home-section-------------------------------------   */
+
+        $(".show-mobileFilter-btn").click(function () {
+            $(".pizza-right-container").addClass("active");
+        });
+        $(".hide-mobileFilter-btn").click(function () {
+            $(".pizza-right-container").removeClass("active");
+        });
+
+    </script>
 </body>
 </html>

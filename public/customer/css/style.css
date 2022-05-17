@@ -10,7 +10,7 @@
     overflow: hidden;
 }
 .img-box-color{
-    width: 350px;
+    width: 300px;
     height: 400px;
     background-color: #EB904A30;
     position: absolute;
@@ -19,8 +19,7 @@
 }
 
 .banner-img{
-    position: relative;
-    width: 750px;
+    width: 700px;
 }
 
 .right-banner-container{
@@ -116,7 +115,6 @@
 } */
 
 .ribbon {
-    /* background-color: #00a8f1; */
     background-color: #4b4b4b;
     color: #fff !important;
     box-shadow: 0 1px 0px rgba(0, 0, 0, 0.07);
@@ -139,7 +137,6 @@
     bottom: -10px;
     background-color: transparent;
     border: 10px solid transparent;
-    /* border-bottom: 10px solid #0079be; */
     border-bottom: 10px solid #2e2e2e;
     transform: rotate(45deg);
     height: 20px;
@@ -150,21 +147,45 @@
     padding: 80px 0px;
 }
 
+
 /* -------------------------------Responsive-------------------------------------   */
 /* // Small devices (landscape phones, 576px and up) */
 @media (max-width: 576px) {
     html{
         overflow-x: hidden;
    }
-   .banner-img{
-    max-width: 550px;
-    }
+   /* .banner-img{
+        width: 400px;
+    } */
     .img-box-color{
-        width: 0px;
-        height: 0px;
-         top: 0px;
-        left: 0px;
         display: none;
+    }
+    .pizza-right-container{
+        position: fixed !important;
+        top: 0 !important;
+        left: -500px !important;
+        bottom: 0 !important;
+        width: 300px;
+        right: 0 !important;
+        z-index: 99999 !important;
+        box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+        overflow-y: scroll;
+    }
+    .pizza-right-container.active{
+        left: 0 !important;
+    }
+    .h5, h5{
+        font-size: 14px !important;
+    }
+    .filter-close-bar{
+        position: sticky !important;
+        top: 0px;
+    }
+    .pizza-box-btn{
+        padding: 0.25rem 0.5rem  !important;
+        font-size: 0.875rem  !important;
+        border-radius: 0.2rem  !important;
+        width: 100% !important;
     }
  }
 

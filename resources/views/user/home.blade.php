@@ -1,10 +1,10 @@
 @extends('user.layout.style')
 @section('content')
     <!-- -------------------------------home section------------------------------------- -->
-    <section class="home-section vh-100" id="home-section">
+    <section class="home-section d-flex align-items-center py-3 min-vh-100" id="home-section">
         <!-- -------------------------------banner------------------------------------- -->
         <div class="container">
-            <div  class="row align-items-center py-5 py-md-0" style="height: 80vh;">
+            <div  class="row align-items-center py-5 py-md-0" style="">
                 <div class="col-12 col-md-6">
                     <div class="left-banner-container">
                         <h5 class="banner-small-title">Free Home Delivery 24 Hours</h5>
@@ -17,7 +17,7 @@
                 <div class="col-12 col-md-6">
                     <div class="right-banner-container py-5 py-md-0">
                         <div class="img-box-color d-none d-md-block"></div>
-                        <img src="{{ asset('customer/img/banner_image.png') }}" class="banner-img" alt="" srcset="">
+                        <img src="{{ asset('customer/img/banner_image.png') }}" class="banner-img img-fluid" alt="" srcset="">
                     </div>
                 </div>
             </div>
@@ -27,30 +27,30 @@
     <section class="service-section py-5 bg-white" id="service-section" style="min-height: 300px;">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-4">
+                <div class="col-4 col-md-4">
                     <div class="service-box card bg-white border-0" style="border-radius: 30px ;">
                         <div class="card-body text-center">
-                            <img src="{{ asset('customer/img/bike.png') }}" class="img-fluid" alt="" srcset="" style="width: 100px ;">
-                            <h4 class="mt-4">Fastest Delivery</h4>
-                            <p class="text-black-50">Delivery that is always anytime even faster</p>
+                            <img src="{{ asset('customer/img/bike.png') }}" class="img-fluid" alt="" srcset="" style="width: 80px;">
+                            <h5 class="mt-4">Fastest Delivery</h5>
+                            <p class="d-none d-md-block text-black-50">Delivery that is always anytime even faster</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4">
+                <div class="col-4 col-md-4">
                     <div class="service-box card bg-white border-0" style="border-radius: 30px ;">
                         <div class="card-body text-center">
-                            <img src="{{ asset('customer/img/order.jpg') }}" class="img-fluid" alt="" srcset="" style="width: 100px ;">
-                            <h4 class="mt-4">Easy To Order</h4>
-                            <p class="text-black-50">You only need a few steps in ordering food</p>
+                            <img src="{{ asset('customer/img/order.jpg') }}" class="img-fluid" alt="" srcset="" style="width: 80px;">
+                            <h5 class="mt-4">Easy To Order</h5>
+                            <p class="d-none d-md-block text-black-50">You only need a few steps in ordering food</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md-4">
+                <div class="col-4 col-md-4">
                     <div class="service-box card bg-white border-0" style="border-radius: 30px ;">
                         <div class="card-body text-center">
-                            <img src="{{ asset('customer/img/pizza.png') }}" class="img-fluid" alt="" srcset="" style="width: 100px ;">
-                            <h4 class="mt-4">Tasty Pizza</h4>
-                            <p class="text-black-50">The tastiest and fresh pizza in town</p>
+                            <img src="{{ asset('customer/img/pizza.png') }}" class="img-fluid" alt="" srcset="" style="width: 80px;">
+                            <h5 class="mt-4">Tasty Pizza</h5>
+                            <p class="d-none d-md-block text-black-50">The tastiest and fresh pizza in town</p>
                         </div>
                     </div>
                 </div>
@@ -67,6 +67,7 @@
                             <div class="col-12">
                                 <div class="px-3 py-2 bg-white rounded d-flex justify-content-between align-items-center" style="border-radius: 10px !important;">
                                     <h4 class="mb-0">Our Pizza Menu</h4>
+                                    <button class="btn btn-outline-primary btn-sm d-block d-sm-none show-mobileFilter-btn">Filter</button>
                                 </div>
                             </div>
                         </div>
@@ -95,15 +96,15 @@
                                                     </div>
                                                     <div class="mt-4">
                                                         <h5>{{ $item->pizza_name }}</h5>
-                                                        <div class="d-flex justify-content-between pizza-dis my-2">
+                                                        <div class="d-flex justify-content-between flex-wrap pizza-dis my-2">
                                                             <span class="">Discount: {{ $item->discount_price }} Ks</span>
-                                                            <span class="">Waiting Time: {{ $item->waiting_time }} min</span>
+                                                            <span class="d-none d-md-block">Waiting Time: {{ $item->waiting_time }} min</span>
                                                         </div>
-                                                        <div class="d-flex justify-content-between mb-3">
+                                                        <div class="d-flex justify-content-between align-items-center flex-wrap my-2">
                                                             <div class="h5 mb-0">{{ $item->price }} Ks</div>
-                                                            <a href="{{ route('user#pizzaDetail',$item->pizza_id) }}" class="">View Detail</a>
+                                                            <a href="{{ route('user#pizzaDetail',$item->pizza_id) }}" class="btn btn-primary px-3 mt-2 rounded-pill text-white pizza-box-btn">View Detail</a>
                                                         </div>
-                                                        <a  href="" class="btn btn-primary rounded-pill w-100 text-white">Order Now</a>
+                                                        {{-- <a  href="" class="btn btn-primary rounded-pill w-100 text-white">Order Now</a> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -120,7 +121,11 @@
                 </div>
                 <div class="col-12 col-md-3">
                     <!-- -------------------------------pizza-right-container------------------------------------- -->
-                    <div class="pizza-right-container card border-0  bg-white p-3 position-sticky">
+                    <div class="pizza-right-container card border-0  bg-white p-3">
+                        <div class="d-flex d-sm-none justify-content-between align-items-center mb-4 filter-close-bar bg-white">
+                            <h6>Filter Option</h6>
+                            <button class="btn btn-sm btn-dark mb-3 shadow hide-mobileFilter-btn"><i class="fas fa-times"></i></button>
+                        </div>
                         <!-- -------------------------------search bar------------------------------------- -->
                         <form action="{{ route('user#searchPizza') }}" method="GET">
                             {{-- @csrf --}}
@@ -140,7 +145,7 @@
                                     {{-- <span class="badge bg-info rounded-pill">{{ $pizzas->count() }}</span>  --}}
                                 </a>
                                 @foreach ($categories as $item)
-                                    <a href="{{ route('user#searchCategory',$item->category_id) }}" class="btn bg-white d-flex justify-content-between mb-2 category py-2">
+                                    <a href="{{ route('user#searchCategory',$item->category_id) }}" class="btn bg-white d-flex justify-content-between mb-2 category py-2 {{ request()->url() == route('user#searchCategory',$item->category_id) ? 'active' : '' }}">
                                         <p class="mb-0">{{$item->category_name}}</p>
                                         {{-- <span class="badge bg-danger rounded-pill">5</span> --}}
                                     </a>
@@ -169,14 +174,12 @@
                             <button class="btn btn-outline-primary w-100" type="submit">Search <i class="fas fa-search ms-3"></i></button>
                         </form>
                         <!-- -------------------------------pagination------------------------------------- -->
-                         @if ($pizzas->total() > 6)
+                        @if ($pizzas->total() > 6)
                             <hr>
-                         @endif
+                        @endif
                         {{ $pizzas->links() }}
 
                     </div>
-
-
 
                 </div>
             </div>
@@ -190,18 +193,18 @@
                     <h3 class="mb-5 text-center">CONTACT US</h3>
                 </div>
             </div>
-            <div class="row px-5">
+            <div class="row px-0 px-md-5">
                 <div class="col-12">
                     <div class="card shadow-lg border-0 overflow-hidden" style="border-radius: 10px !important;">
                         <div class="">
                             <div class="row">
                                 <div class="col-12 col-md-5 bg-primary">
                                     <div class=" h-100 d-flex flex-column justify-content-center" style="border-radius: 10px ;">
-                                        <div class="d-flex align-items-center bg-white mb-4 mx-5 p-3" style="border-radius: 10px ;">
+                                        <div class="d-flex align-items-center bg-white mt-4 mx-5 p-3" style="border-radius: 10px ;">
                                             <i class="fas fa-phone"></i>
                                             <span class="mb-0 ms-3">+95 9123 4567 89</span>
                                         </div>
-                                        <div class="d-flex align-items-center bg-white mb-4 mx-5 p-3" style="border-radius: 10px ;">
+                                        <div class="d-flex align-items-center bg-white my-4 mx-5 p-3" style="border-radius: 10px ;">
                                             <i class="fas fa-envelope"></i>
                                             <span class="mb-0 ms-3">example@gmail.com</span>
                                         </div>
