@@ -154,6 +154,12 @@
     html{
         overflow-x: hidden;
    }
+   .navbar-nav{
+       padding: 20px 0px;
+   }
+   .nav-link{
+       padding: 15px 0px !important;
+   }
    /* .banner-img{
         width: 400px;
     } */
@@ -170,6 +176,8 @@
         z-index: 99999 !important;
         box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
         overflow-y: scroll;
+        transition: .3s linear;
+        border-radius: 0px !important;
     }
     .pizza-right-container.active{
         left: 0 !important;

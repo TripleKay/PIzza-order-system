@@ -70,8 +70,8 @@
           </li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="nav-icon fas fa-pizza-slice"></i>
+            <a href="{{ route('admin#orderList') }}" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
               <p>
                 Order List
                 <span class="badge badge-info right">1</span>

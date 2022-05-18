@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('customer/scss/custom.css') }}">
     <title>Pizza Order System</title>
 </head>
-<body>
+<body  data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="0">
     <!-- -------------------------------nav bar------------------------------------- -->
     <div class="container-fluid bg-white shadow-sm">
         <div class="container">

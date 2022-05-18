@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\PizzaController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CategoryController;
-use App\Models\Contact;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +72,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
 
    Route::get('contactList',[ContactController::class,'contactList'])->name('admin#contactList');
    Route::get('contactList/search',[ContactController::class,'searchContact'])->name('admin#searchContact');
+
+   Route::get('order/list',[OrderController::class,'orderList'])->name('admin#orderList');
+   Route::get('order/list/search',[OrderController::class,'searchOrder'])->name('admin#searchOrder');
 });
 
 Route::group(['prefix'=>'user'],function(){
