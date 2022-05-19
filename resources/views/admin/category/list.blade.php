@@ -23,18 +23,19 @@
                     Total - <span class="badge badge-danger"> {{ $categories->total() }}</span>
                   </button>
                  <a href="{{ route('admin#addCategory') }}" class="btn btn-primary">Add Category</a>
-               <div class="card-tools">
-                <form action="{{ route('admin#searchCategory') }}" method="GET">
-                  @csrf
-                  <div class="input-group my-0" style="width: 200px;">
-                    <input type="text" name="search" class="form-control float-right" placeholder="Search">
-                    <div class="input-group-append">
-                      <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-search"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
+               <div class="card-tools d-flex">
+                    <a href="{{ route('admin#downloadCategory') }}" class="btn btn-dark mr-2"><i class="fas fa-download"></i></a>
+                    <form action="{{ route('admin#searchCategory') }}" method="GET">
+                        @csrf
+                        <div class="input-group my-0" style="width: 200px;">
+                            <input type="text" name="search" class="form-control float-right" placeholder="Search">
+                            <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            </div>
+                        </div>
+                    </form>
 
                </div>
              </div>

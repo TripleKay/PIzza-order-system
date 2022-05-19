@@ -54,6 +54,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
    Route::get('deleteCategory/{id}',[CategoryController::class,'deleteCategory'])->name('admin#deleteCategory');
    Route::get('category/search',[CategoryController::class,'searchCategory'])->name('admin#searchCategory');
    Route::get('categoryItem/{id}',[CategoryController::class,'categoryItem'])->name('admin#categoryItem');
+   Route::get('downloadCategory',[CategoryController::class,'downloadCategory'])->name('admin#downloadCategory');
 
    Route::get('pizza',[PizzaController::class,'pizza'])->name('admin#pizza');
    Route::get('addPizza',[PizzaController::class,'addPizza'])->name('admin#addPizza');

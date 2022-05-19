@@ -93,6 +93,28 @@ class CategoryController extends Controller
         return redirect()->route('admin#category')->with(['success'=>'Category Added.....']);
     }
 
+    //download csv
+    public function downloadCategory(){
+        $users = Category::get();// data get
+        $csvExporter = new \Laracsv\Export();
+
+        $csvExporter->build($users, [
+            'category_id' => 'ID',
+            'category_name' => 'Category Name',
+            'created_at' => 'Created Date',
+            'updated_at' => 'Updated Date'
+        ]);
+
+        $csvReader = $csvExporter->getReader();
+
+        $csvReader->setOutputBOM(\League\Csv\Reader::BOM_UTF8);
+
+        $filename = 'categoryList.csv';
+
+        return response((string) $csvReader)
+            ->header('Content-Type', 'text/csv; charset=UTF-8')
+            ->header('Content-Disposition', 'attachment; filename="'.$filename.'"');
+    }
 
 
 }
