@@ -23,7 +23,7 @@ class CategoryController extends Controller
         return view('admin.category.list')->with(['categories'=>$data]);
     }
 
-    // category item
+    // view category item
     public function categoryItem($id){
         $data = Pizza::select('pizzas.*','categories.category_name as categoryName')
                 ->leftJoin('categories','categories.category_id','pizzas.category_id')
@@ -34,7 +34,13 @@ class CategoryController extends Controller
 
     //searchcateogry
     public function searchCategory(Request $request){
-        $data = Category::where('category_name','like','%'.$request->search.'%')->paginate(5);
+        
+        $data = Category::select('categories.*',DB::raw('COUNT(pizzas.category_id) as count'))
+            ->leftJoin('pizzas','pizzas.category_id','categories.category_id')
+            ->where('categories.category_name','like','%'.$request->search.'%')
+            ->groupBy('categories.category_id')
+            ->paginate(5);
+
         $data->appends($request->all());//fixed search error when paginate
         return view('admin.category.list')->with(['categories'=>$data]);
     }
@@ -95,12 +101,18 @@ class CategoryController extends Controller
 
     //download csv
     public function downloadCategory(){
-        $users = Category::get();// data get
+        // data get
+        $category = Category::select('categories.*',DB::raw('COUNT(pizzas.category_id) as count'))
+            ->leftJoin('pizzas','pizzas.category_id','categories.category_id')
+            ->groupBy('categories.category_id')
+            ->get();
+
         $csvExporter = new \Laracsv\Export();
 
-        $csvExporter->build($users, [
+        $csvExporter->build($category, [
             'category_id' => 'ID',
             'category_name' => 'Category Name',
+            'count' => 'Product Count',
             'created_at' => 'Created Date',
             'updated_at' => 'Updated Date'
         ]);
