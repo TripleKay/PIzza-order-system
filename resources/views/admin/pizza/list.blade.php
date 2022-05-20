@@ -42,7 +42,7 @@
               <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-hover text-nowrap table-bordered">
-                        <thead class="bg-light">
+                        <thead class="">
                           <tr>
                             <th>ID</th>
                             <th>Pizza Name</th>

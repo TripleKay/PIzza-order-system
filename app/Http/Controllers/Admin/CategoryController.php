@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
+use App\Models\Pizza;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Models\Pizza;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -15,11 +16,16 @@ class CategoryController extends Controller
 {
     //category
     public function category(){
+        //for csv download
+        if(Session::has('CATEGORY_SEARCH')){
+            Session::forget('CATEGORY_SEARCH');
+        }
+
         $data = Category::select('categories.*',DB::raw('COUNT(pizzas.category_id) as count'))
                 ->leftJoin('pizzas','pizzas.category_id','categories.category_id')
                 ->groupBy('categories.category_id')
                 ->paginate(5);
-                // dd($data->toArray());
+
         return view('admin.category.list')->with(['categories'=>$data]);
     }
 
@@ -34,12 +40,14 @@ class CategoryController extends Controller
 
     //searchcateogry
     public function searchCategory(Request $request){
-        
+
         $data = Category::select('categories.*',DB::raw('COUNT(pizzas.category_id) as count'))
             ->leftJoin('pizzas','pizzas.category_id','categories.category_id')
             ->where('categories.category_name','like','%'.$request->search.'%')
             ->groupBy('categories.category_id')
             ->paginate(5);
+
+        Session::put('CATEGORY_SEARCH',$request->search);//for csv download
 
         $data->appends($request->all());//fixed search error when paginate
         return view('admin.category.list')->with(['categories'=>$data]);
@@ -101,11 +109,20 @@ class CategoryController extends Controller
 
     //download csv
     public function downloadCategory(){
-        // data get
-        $category = Category::select('categories.*',DB::raw('COUNT(pizzas.category_id) as count'))
-            ->leftJoin('pizzas','pizzas.category_id','categories.category_id')
-            ->groupBy('categories.category_id')
-            ->get();
+        if(Session::has('CATEGORY_SEARCH')){
+            // for search data
+            $category = Category::select('categories.*',DB::raw('COUNT(pizzas.category_id) as count'))
+                                ->leftJoin('pizzas','pizzas.category_id','categories.category_id')
+                                ->where('categories.category_name','like','%'.Session::get('CATEGORY_SEARCH').'%')
+                                ->groupBy('categories.category_id')
+                                ->get();
+        }else{
+            // for all data
+            $category = Category::select('categories.*',DB::raw('COUNT(pizzas.category_id) as count'))
+                        ->leftJoin('pizzas','pizzas.category_id','categories.category_id')
+                        ->groupBy('categories.category_id')
+                        ->get();
+        }
 
         $csvExporter = new \Laracsv\Export();
 

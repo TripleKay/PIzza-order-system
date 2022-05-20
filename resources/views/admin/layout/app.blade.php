@@ -30,7 +30,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item">
-            <a href="{{ route('admin#profile') }}" class="nav-link">
+            <a href="{{ route('admin#profile') }}" class="nav-link {{ request()->url() == route('admin#profile') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user-circle "></i>
               <p>
                 My Profile
@@ -40,51 +40,48 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('admin#userList') }}" class="nav-link">
+            <a href="{{ route('admin#userList') }}" class="nav-link {{ request()->url() == route('admin#userList') ? 'active' : '' }}">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 User List
-                <span class="badge badge-info right">{{ App\Models\User::count() }}</span>
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('admin#category') }}" class="nav-link">
+            <a href="{{ route('admin#category') }}" class="nav-link {{ request()->url() == route('admin#category') ? 'active' : '' }}">
               <i class="nav-icon fas fa-list"></i>
               <p>
                   Category List
-                  <span class="badge badge-info right">{{ App\Models\Category::count() }}</span>
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('admin#pizza') }}" class="nav-link">
+            <a href="{{ route('admin#pizza') }}" class="nav-link {{ request()->url() == route('admin#pizza') ? 'active' : '' }}">
               <i class="nav-icon fas fa-pizza-slice"></i>
               <p>
                 Pizza List
-                <span class="badge badge-info right">{{ App\Models\Pizza::count() }}</span>
+
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('admin#orderList') }}" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
+            <a href="{{ route('admin#orderList') }}" class="nav-link {{ request()->url() == route('admin#orderList') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-shopping-bag"></i>
               <p>
                 Order List
-                <span class="badge badge-info right">1</span>
+                <span class="badge badge-info right">{{ App\Models\Order::count() }}</span>
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('admin#contactList') }}" class="nav-link">
+            <a href="{{ route('admin#contactList') }}" class="nav-link {{ request()->url() == route('admin#contactList') ? 'active' : '' }}">
               <i class="fas fa-file-contract nav-icon"></i>
               <p>
                 Contact
-                <span class="badge badge-info right">{{ App\Models\Contact::count() }}</span>
               </p>
             </a>
           </li>
