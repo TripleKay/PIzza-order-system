@@ -72,6 +72,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>[AdminCheckMi
    Route::get('userList/search',[UserController::class,'searchUserList'])->name('admin#searchUserList');
    Route::get('adminList/search',[UserController::class,'searchAdminList'])->name('admin#searchAdminList');
    Route::get('deleteUser/{id}',[UserController::class,'deleteUser'])->name('admin#deleteUser');
+   Route::get('editUser/{id}',[UserController::class,'editUser'])->name('admin#editUser');
+   Route::post('updateUser/{id}',[UserController::class,'updateUser'])->name('admin#updateUser');
 
    Route::get('contactList',[ContactController::class,'contactList'])->name('admin#contactList');
    Route::get('contactList/search',[ContactController::class,'searchContact'])->name('admin#searchContact');

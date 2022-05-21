@@ -64,7 +64,8 @@
                            <td>{{ $item->phone }}</td>
                            <td>{{ $item->address }}</td>
                            <td>
-                             <a href="{{ route('admin#deleteUser',$item->id) }}" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></a>
+                                <a href="{{ route('admin#editUser',$item->id) }}" class="btn btn-sm bg-success text-white"><i class="fas fa-edit"></i></a>
+                                <a href="{{ route('admin#deleteUser',$item->id) }}" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></a>
                            </td>
                          </tr>
                         @endforeach

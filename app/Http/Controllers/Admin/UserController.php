@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -38,6 +40,49 @@ class UserController extends Controller
         return back()->with(['success'=>'User Account Deleted...']);
     }
 
+    //edit user and admin
+    public function editUser($id){
+        $data = User::where('id',$id)->first();
+        return view('admin.user.edit')->with(['data'=>$data]);
+    }
+
+    //update user and admin
+    public function updateUser(Request $request,$id){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($id),
+            ],
+            'phone' => [
+                'required',
+                Rule::unique('users')->ignore($id),
+            ],
+            'address' => 'required',
+            'role' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+        $data = $this->requestUserData($request);
+        User::where('id',$id)->update($data);
+        return redirect()->route('admin#userList')->with(['success'=>'user has been updated']);
+
+    }
+
+    //get request user data
+    private function requestUserData($request){
+        return [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'role' => $request->role
+        ];
+    }
     //get search data
     private function search($request,$role){
         $searchData = User::where('role',$role)->where(function($query) use ($request){
