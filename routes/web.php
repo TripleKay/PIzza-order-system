@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\PizzaController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\OrderController;
+use App\Http\Middleware\AdminCheckMiddleware;
+use App\Http\Middleware\UserCheckMiddleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +42,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>[AdminCheckMiddleware::class]],function(){
    Route::get('profile',[AdminController::class,'profile'])->name('admin#profile');
    Route::post('updateProfile/{id}',[AdminController::class,'updateProfile'])->name('admin#updateProfile');
    Route::get('changePassword',[AdminController::class,'changePasswordPage'])->name('admin#changePasswordPage');
@@ -78,7 +80,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
    Route::get('order/list/search',[OrderController::class,'searchOrder'])->name('admin#searchOrder');
 });
 
-Route::group(['prefix'=>'user'],function(){
+Route::group(['prefix'=>'user','middleware'=>[UserCheckMiddleware::class]],function(){
     Route::get('/',[App\Http\Controllers\UserController::class,'index'])->name('user#index');
     Route::get('pizza/detail/{id}',[App\Http\Controllers\UserController::class,'pizzaDetail'])->name('user#pizzaDetail');
     Route::get('category/search/{id}',[App\Http\Controllers\UserController::class,'searchCategory'])->name('user#searchCategory');

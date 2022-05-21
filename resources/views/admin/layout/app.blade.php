@@ -20,7 +20,7 @@
       </li>
     </ul>
   </nav>
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar sidebar-dark-secondary elevation-4">
     <a href="{{ route('user#index') }}" class="brand-link">
       <img src="{{ asset('customer/img/pizza.png') }}" alt="Logo" class="brand-image" >
       <span class="brand-text h6 mb-0 font-weight-bold">Pizza Order System</span>
