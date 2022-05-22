@@ -22,7 +22,8 @@
                 <button type="button" class="btn btn-outline-primary font-weight-bold mr-2">
                     Total - <span class="badge badge-danger"> {{ $orders->total() }}</span>
                   </button>
-               <div class="card-tools">
+               <div class="card-tools d-flex">
+                <a href="{{ route('admin#downloadOrder') }}" class="btn btn-dark mr-2"><i class="fas fa-download mr-2"></i>Download CSV</a>
                 <form action="{{ route('admin#searchOrder') }}" method="GET">
                   @csrf
                   <div class="input-group my-0" style="width: 200px;">

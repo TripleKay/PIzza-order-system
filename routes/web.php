@@ -66,6 +66,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>[AdminCheckMi
    Route::get('editPizza/{id}',[PizzaController::class,'editPizza'])->name('admin#editPizza');
    Route::post('updatePizza/{id}',[PizzaController::class,'updatePizza'])->name('admin#updatePizza');
    Route::get('pizza/search',[PizzaController::class,'searchPizza'])->name('admin#searchPizza');
+   Route::get('downloadPizza',[PizzaController::class,'downloadPizza'])->name('admin#downloadPizza');
 
    Route::get('userList',[UserController::class,'userList'])->name('admin#userList');
    Route::get('adminList',[UserController::class,'adminList'])->name('admin#adminList');
@@ -80,6 +81,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>[AdminCheckMi
 
    Route::get('order/list',[OrderController::class,'orderList'])->name('admin#orderList');
    Route::get('order/list/search',[OrderController::class,'searchOrder'])->name('admin#searchOrder');
+   Route::get('downloadOrder',[OrderController::class,'downloadOrder'])->name('admin#downloadOrder');
 });
 
 Route::group(['prefix'=>'user','middleware'=>[UserCheckMiddleware::class]],function(){

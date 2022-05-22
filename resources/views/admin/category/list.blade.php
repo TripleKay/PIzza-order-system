@@ -22,9 +22,9 @@
                 <button type="button" class="btn btn-outline-primary font-weight-bold mr-2">
                     Total - <span class="badge badge-danger"> {{ $categories->total() }}</span>
                   </button>
-                 <a href="{{ route('admin#addCategory') }}" class="btn btn-primary">Add Category</a>
+                 <a href="{{ route('admin#addCategory') }}" class="btn btn-primary"><i class="fas fa-plus-circle mr-2"></i>Add Category</a>
                <div class="card-tools d-flex">
-                    <a href="{{ route('admin#downloadCategory') }}" class="btn btn-dark mr-2"><i class="fas fa-download"></i></a>
+                    <a href="{{ route('admin#downloadCategory') }}" class="btn btn-dark mr-2"><i class="fas fa-download mr-2"></i>Download CSV</a>
                     <form action="{{ route('admin#searchCategory') }}" method="GET">
                         @csrf
                         <div class="input-group my-0" style="width: 200px;">

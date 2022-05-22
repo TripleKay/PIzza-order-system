@@ -22,9 +22,10 @@
                     Total - <span class="badge badge-danger"> {{ $pizzas->total() }}</span>
                   </button>
                 <a href="{{ route('admin#addPizza') }}" class="btn btn-primary">
-                   <i class="fas fa-plus mr-2"></i> Add Pizza
+                   <i class="fas fa-plus-circle mr-2"></i> Add Pizza
                 </a>
-                <div class="card-tools">
+                <div class="card-tools d-flex">
+                    <a href="{{ route('admin#downloadPizza') }}" class="btn btn-dark mr-2"><i class="fas fa-download mr-2"></i>Download CSV</a>
                     <form action="{{ route('admin#searchPizza') }}" method="GET">
                         @csrf
                         <div class="input-group my-0" style="width: 200px;">
@@ -46,7 +47,7 @@
                           <tr>
                             <th>ID</th>
                             <th>Pizza Name</th>
-                            <th>Cateogory</th>
+                            <th>Category</th>
                             <th>Image</th>
                             <th>Price</th>
                             <th>Publish Status</th>

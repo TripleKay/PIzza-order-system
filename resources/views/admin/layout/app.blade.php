@@ -72,7 +72,6 @@
                 <i class="nav-icon fas fa-shopping-bag"></i>
               <p>
                 Order List
-                <span class="badge badge-info right">{{ App\Models\Order::count() }}</span>
               </p>
             </a>
           </li>
