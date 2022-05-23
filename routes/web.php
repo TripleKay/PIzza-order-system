@@ -75,9 +75,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>[AdminCheckMi
    Route::get('deleteUser/{id}',[UserController::class,'deleteUser'])->name('admin#deleteUser');
    Route::get('editUser/{id}',[UserController::class,'editUser'])->name('admin#editUser');
    Route::post('updateUser/{id}',[UserController::class,'updateUser'])->name('admin#updateUser');
+   Route::get('downloadUser',[UserController::class,'downloadUser'])->name('admin#downloadUser');
+   Route::get('downloadAdmin',[UserController::class,'downloadAdmin'])->name('admin#downloadAdmin');
 
    Route::get('contactList',[ContactController::class,'contactList'])->name('admin#contactList');
    Route::get('contactList/search',[ContactController::class,'searchContact'])->name('admin#searchContact');
+   Route::get('downloadContact',[ContactController::class,'downloadContact'])->name('admin#downloadContact');
 
    Route::get('order/list',[OrderController::class,'orderList'])->name('admin#orderList');
    Route::get('order/list/search',[OrderController::class,'searchOrder'])->name('admin#searchOrder');

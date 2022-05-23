@@ -24,7 +24,8 @@
                 <a href="{{ route('admin#adminList') }}" class="btn btn-success">Admin List</a>
                </h3>
 
-               <div class="card-tools">
+               <div class="card-tools d-flex">
+                <a href="{{ route('admin#downloadAdmin') }}" class="btn btn-dark mr-2"><i class="fas fa-download mr-2"></i>Download CSV</a>
                 <form action="{{ route('admin#searchAdminList') }}" method="GET">
                   @csrf
                   <div class="input-group my-0" style="width: 200px;">

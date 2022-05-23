@@ -6,32 +6,57 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     //user list
     public function userList(){
+        //for csv download
+        if(Session::has('USER_SEARCH')){
+            Session::forget('USER_SEARCH');
+        }
         $userData = User::where('role','user')->paginate(5);
         return view('admin.user.userList')->with(['userData'=>$userData]);
     }
 
     //admin list
     public function adminList(){
+        //for csv download
+        if(Session::has('ADMIN_SEARCH')){
+            Session::forget('ADMIN_SEARCH');
+        }
         $adminData = User::where('role','admin')->paginate(5);
         return view('admin.user.adminList')->with(['adminData'=>$adminData]);
     }
 
     //search user
     public function searchUserList(Request $request){
-        $response = $this->search($request,'user');
+        $response = $this->search($request->search,'user')->paginate(5);
+        $response->appends($request->all());
+        Session::put('USER_SEARCH',$request->search);//for csv download
         return view('admin.user.userList')->with(['userData'=>$response]);
     }
 
     //search admin
     public function searchAdminList(Request $request){
-        $response = $this->search($request,'admin');
+        $response = $this->search($request->search,'admin')->paginate(5);
+        $response->appends($request->all());
+        Session::put('ADMIN_SEARCH',$request->search);//for csv download
         return view('admin.user.adminList')->with(['adminData'=>$response]);
+    }
+
+    //download csv for user
+    public function downloadUser(){
+        $filename = 'userList.csv';
+        return $this->downloadCSV('USER_SEARCH','user',$filename);
+    }
+
+    //download csv for admin
+    public function downloadAdmin(){
+        $filename = 'adminList.csv';
+        return $this->downloadCSV('ADMIN_SEARCH','admin',$filename);
     }
 
     //delete user and admin
@@ -73,6 +98,39 @@ class UserController extends Controller
 
     }
 
+    //for download csv
+    private function downloadCSV($sessionName,$role,$filename){
+        if(Session::has($sessionName)){
+            // for search data
+            $data = $this->search(Session::get($sessionName),$role)->get();
+        }else{
+            // for all data
+            $data = User::where('role',$role)->get();
+        }
+
+        $csvExporter = new \Laracsv\Export();
+
+        $csvExporter->build($data, [
+            'id' => 'ID',
+            'name' => 'Name',
+            'email' => 'Email',
+            'phone' => 'Phone',
+            'address' => 'Address',
+            'role' => 'Role',
+            'created_at' => 'Created Date',
+            'updated_at' => 'Updated Date'
+        ]);
+
+        $csvReader = $csvExporter->getReader();
+
+        $csvReader->setOutputBOM(\League\Csv\Reader::BOM_UTF8);
+
+        return response((string) $csvReader)
+            ->header('Content-Type', 'text/csv; charset=UTF-8')
+            ->header('Content-Disposition', 'attachment; filename="'.$filename.'"');
+    }
+
+
     //get request user data
     private function requestUserData($request){
         return [
@@ -83,15 +141,16 @@ class UserController extends Controller
             'role' => $request->role
         ];
     }
+
     //get search data
     private function search($request,$role){
         $searchData = User::where('role',$role)->where(function($query) use ($request){
-            $query->orWhere('name','like','%'.$request->search.'%')
-                    ->orWhere('email','like','%'.$request->search.'%')
-                    ->orWhere('phone','like','%'.$request->search.'%')
-                    ->orWhere('address','like','%'.$request->search.'%');
-        })->paginate(5);
-        $searchData->appends($request->all());
+            $query->orWhere('name','like','%'.$request.'%')
+                    ->orWhere('email','like','%'.$request.'%')
+                    ->orWhere('phone','like','%'.$request.'%')
+                    ->orWhere('address','like','%'.$request.'%');
+        });
         return $searchData;
     }
+
 }
