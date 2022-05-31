@@ -91,7 +91,7 @@
                                                     <div class="ribbon h6 mb-0">Buy 1 Get 1</div>
                                                 @endif
                                                 <div class="card-body">
-                                                    <div class="card-img-container p-2">
+                                                    <div class="card-img-container overflow-hidden" style="border: .5px solid #E7E2E2">
                                                         <img src="{{ asset('uploads/'.$item->image) }}" class="img-fluid" alt="" srcset="">
                                                     </div>
                                                     <div class="mt-4">

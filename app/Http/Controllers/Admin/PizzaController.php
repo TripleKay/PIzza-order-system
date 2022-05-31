@@ -96,7 +96,7 @@ class PizzaController extends Controller
    public function createPizza(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'image' => 'required',
+            'image' => 'required|mimes:jpeg,png,jpg,gif,svg|dimensions:ratio=1/1',
             'price' => 'required',
             'publishStatus' => 'required',
             'category' => 'required',
@@ -104,6 +104,8 @@ class PizzaController extends Controller
             'buyOneGetOne' => 'required',
             'waitingTime' => 'required',
             'description' => 'required'
+        ],[
+            'image.dimensions' => 'Image ratio must be square.'
         ]);
 
         if ($validator->fails()) {
@@ -140,6 +142,7 @@ class PizzaController extends Controller
    public function updatePizza($id,Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+            'image' => 'mimes:jpeg,png,jpg,gif,svg|dimensions:ratio=1/1',
             'price' => 'required',
             'publishStatus' => 'required',
             'category' => 'required',
@@ -147,6 +150,8 @@ class PizzaController extends Controller
             'buyOneGetOne' => 'required',
             'waitingTime' => 'required',
             'description' => 'required'
+        ],[
+            'image.dimensions' => 'Image ratio must be square.'
         ]);
 
         if ($validator->fails()) {
