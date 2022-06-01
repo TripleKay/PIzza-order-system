@@ -87,7 +87,7 @@
                                   <td>
                                       <a href="{{ route('admin#editPizza',$item->pizza_id) }}" class="btn btn-success btn-sm"><i class="fas fa-edit"></i></a>
                                       <a href="{{ route('admin#infoPizza',$item->pizza_id) }}" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
-                                      <a href="{{ route('admin#deletePizza',$item->pizza_id) }}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
+                                      <a href="{{ route('admin#deletePizza',$item->pizza_id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete...?')"><i class="fas fa-trash-alt"></i></a>
                                   </td>
                               </tr>
                               @endforeach

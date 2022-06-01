@@ -50,7 +50,6 @@
                         <th>Customer Name</th>
                         <th>Pizza Count</th>
                         <th>Order Date</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -66,12 +65,6 @@
                                 <td>{{ $item->customer_name }}</td>
                                 <td>{{ $item->count }}</td>
                                 <td>{{ $item->order_time }}</td>
-
-                                <td>
-                                    <a href="" class="btn btn-sm bg-info text-white"><i class="fas fa-eye"></i></a>
-                                    <a href="" class="btn btn-sm bg-success text-white"><i class="fas fa-edit"></i></a>
-                                    <a href="" class="btn btn-sm bg-danger text-white"><i class="fas fa-trash-alt"></i></a>
-                                </td>
                             </tr>
                             @endforeach
                         @endif

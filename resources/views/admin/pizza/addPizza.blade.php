@@ -63,7 +63,7 @@
                           <select name="category" id="" class="custom-select">
                             <option value="">----Select Category----</option>
                               @foreach ($categories as $item)
-                                <option value="{{ $item->category_id }}">{{ $item->category_name }}</option>
+                                <option value="{{ $item->category_id }}" {{ old('category') == $item->category_id ? 'selected' : ''  }}>{{ $item->category_name }}</option>
                               @endforeach
                           </select>
                           @if ($errors->has('category'))

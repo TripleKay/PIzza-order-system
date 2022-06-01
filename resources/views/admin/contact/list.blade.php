@@ -51,7 +51,6 @@
                         <th>Email</th>
                         <th>Message</th>
                         <th>Created at</th>
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -68,10 +67,6 @@
                            <td>{{ $item->email }}</td>
                            <td>{{ $item->message }}</td>
                            <td>{{ $item->created_at }}</td>
-                           <td>
-                                <a href="" class="btn btn-info btn-sm"><i class="fas fa-eye"></i></a>
-                                <a href="" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
-                            </td>
                          </tr>
                         @endforeach
                     @endif

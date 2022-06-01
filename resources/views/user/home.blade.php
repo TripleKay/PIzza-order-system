@@ -1,11 +1,11 @@
 @extends('user.layout.style')
 @section('content')
     <!-- -------------------------------home section------------------------------------- -->
-    <section class="home-section d-flex align-items-center py-3 min-vh-100" id="home-section">
+    <section class="home-section d-flex align-items-center" id="home-section">
         <!-- -------------------------------banner------------------------------------- -->
         <div class="container">
-            <div  class="row align-items-center py-5 py-md-0" style="">
-                <div class="col-12 col-md-6">
+            <div  class="row align-items-center py-md-0" style="">
+                <div class="col-6 col-md-12 col-lg-6">
                     <div class="left-banner-container">
                         <h5 class="banner-small-title">Free Home Delivery 24 Hours</h5>
                         <h1 class="banner-title my-3 fw-bolder">THE TASTIEST & BEST PIZZA IN THE TOWN</h1>
@@ -14,7 +14,7 @@
                         <a href="#pizza-section" class="btn btn-outline-primary rounded-pill ms-3">Show Menu</a>
                     </div>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-6 col-md-12 col-lg-6">
                     <div class="right-banner-container py-5 py-md-0">
                         <div class="img-box-color d-none d-md-block"></div>
                         <img src="{{ asset('customer/img/banner_image.png') }}" class="banner-img img-fluid" alt="" srcset="">
@@ -61,7 +61,7 @@
     <section class="pizza-section" id="pizza-section">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-9">
+                <div class="col-12 col-md-8 col-lg-9">
                     <div class="pizza-left-container">
                         <div class="row">
                             <div class="col-12">
@@ -84,7 +84,7 @@
                                     </div>
                                 @else
                                     @foreach ($pizzas as $item)
-                                        <div class="col-6 col-md-4">
+                                        <div class="col-6 col-md-6 col-lg-4">
                                             <div class="card pizza-card position-relative">
                                                 <!-- -------------------------------ribbon------------------------------------- -->
                                                 @if ($item->buy_one_get_one_status == 1)
@@ -119,7 +119,7 @@
 
                     </div>
                 </div>
-                <div class="col-12 col-md-3">
+                <div class="col-12 col-md-4 col-lg-3">
                     <!-- -------------------------------pizza-right-container------------------------------------- -->
                     <div class="pizza-right-container card border-0  bg-white p-3">
                         <div class="d-flex d-sm-none justify-content-between align-items-center mb-4 filter-close-bar bg-white">
@@ -140,7 +140,7 @@
                             <h5 class="mb-4">Category Lists</h5>
                             <div class="">
 
-                                <a href="{{ url('user#pizza-section') }}" class="btn bg-white d-flex justify-content-between mb-2 category active py-2">
+                                <a href="{{ url('user#pizza-section') }}" class="btn bg-white d-flex justify-content-between mb-2 category  py-2 {{ request()->url() == route('user#index') ? 'active' : '' }}">
                                     <p class="mb-0">All Categories</p>
                                     {{-- <span class="badge bg-info rounded-pill">{{ $pizzas->count() }}</span>  --}}
                                 </a>

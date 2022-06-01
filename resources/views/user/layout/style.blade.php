@@ -17,7 +17,7 @@
 </head>
 <body  data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="0">
     <!-- -------------------------------nav bar------------------------------------- -->
-    <div class="container-fluid bg-white shadow-sm">
+    <div class="container-fluid bg-white shadow-sm" style="z-index: 3000">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -35,7 +35,7 @@
                             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
                                 <ul class="navbar-nav">
                                     <li class="nav-item">
-                                    <a class="nav-link text-uppercase active" aria-current="page" href="#home-section">Home</a>
+                                    <a class="nav-link text-uppercase active" aria-current="page" href="{{ route('user#index') }}">Home</a>
                                     </li>
                                     <li class="nav-item">
                                     <a class="nav-link text-uppercase" href="#service-section">Service</a>
@@ -43,9 +43,9 @@
                                     <li class="nav-item">
                                     <a class="nav-link text-uppercase" href="#pizza-section">Pizza Menu</a>
                                     </li>
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                     <a class="nav-link text-uppercase" href="#contact-section">About Us</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="nav-item">
                                     <a class="nav-link text-uppercase" href="#contact-section">Contact Us</a>
                                     </li>
