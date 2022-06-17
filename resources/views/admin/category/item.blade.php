@@ -16,9 +16,9 @@
                </button>
              </div>
             @endif
-            <div class="card shadow">
+            <div class="card shadow-none">
               <div class="card-header">
-                <div class="btn btn-primary">{{ $pizzas[0]->categoryName }} Category</div>
+                <div class="btn btn-primary mr-2">{{ $pizzas[0]->categoryName }} Category</div>
                 <button type="button" class="btn btn-outline-primary font-weight-bold mr-2">
                     Total - <span class="badge badge-danger"> {{ $pizzas->total() }}</span>
                   </button>

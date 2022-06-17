@@ -9,7 +9,7 @@
      <div class="container-fluid">
        <div class="row mt-5">
          <div class="col-4  offset-4">
-           <div class="card ">
+           <div class="card shadow-none">
 
              <!-- /.card-header -->
             <div class="card-header text-center">

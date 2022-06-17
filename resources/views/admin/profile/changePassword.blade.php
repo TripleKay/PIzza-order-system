@@ -6,7 +6,7 @@
         <div class="row mt-4">
           <div class="col-8 offset-3 mt-5">
             <div class="col-md-9">
-              <div class="card shadow">
+              <div class="card shadow-none">
                 <div class="card-header bg-primary p-2">
                   <legend class="text-center mb-0">User Profile</legend>
                 </div>

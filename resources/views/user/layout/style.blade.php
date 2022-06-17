@@ -113,7 +113,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <p class="text-secondary mb-0">Copyright @ 2022 Pizza Order System</p>
+                    <p class="text-secondary mb-0">Copyright &copy; 2022 Pizza Order System</p>
                 </div>
             </div>
         </div>

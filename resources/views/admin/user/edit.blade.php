@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mt-5">
           <div class="col-6 offset-3">
-            <div class="card shadow">
+            <div class="card shadow-none">
               <!-- /.card-header -->
              <div class="card-header bg-primary">
                 <h3 class="mb-0"><span class="h5 mb-0">Edit</span> {{ $data->name }}</h3>

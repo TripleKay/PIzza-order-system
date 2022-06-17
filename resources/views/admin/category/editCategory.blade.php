@@ -9,10 +9,10 @@
      <div class="container-fluid">
        <div class="row mt-5">
          <div class="col-4 offset-4">
-           <div class="card shadow">
+           <div class="card shadow-none">
 
              <!-- /.card-header -->
-            <div class="card-header bg-primary">
+            <div class="card-header">
                <h3 class="mb-0"> Edit Category</h3>
             </div>
              <!-- /.card-body -->

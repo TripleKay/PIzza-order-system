@@ -17,7 +17,7 @@
                </button>
              </div>
             @endif
-           <div class="card shadow">
+           <div class="card shadow-none">
              <div class="card-header">
                 <button type="button" class="btn btn-outline-primary font-weight-bold mr-2">
                     Total - <span class="badge badge-danger"> {{ $orders->total() }}</span>

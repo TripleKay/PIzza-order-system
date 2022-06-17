@@ -17,10 +17,10 @@
                </button>
              </div>
             @endif
-           <div class="card shadow">
+           <div class="card shadow-none">
              <div class="card-header">
                <h3 class="card-title">
-                <a href="{{ route('admin#userList') }}" class="btn btn-primary">User List</a>
+                <a href="{{ route('admin#userList') }}" class="btn btn-primary mr-2">User List</a>
                 <a href="{{ route('admin#adminList') }}" class="btn btn-success">Admin List</a>
                </h3>
 

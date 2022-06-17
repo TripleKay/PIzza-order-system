@@ -9,7 +9,18 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.css') }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous"> --}}
+  <style>
+    .sidebar-light-white {
+      background-color: #EB904A !important ;
+    }
+    .sidebar-light-white .nav-link {
+      color: #fff !important;
+    }
+    .sidebar-light-white .nav-link.active{
+      color: #EB904A !important;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" style="background-color: #f4f6f9;">
@@ -20,10 +31,10 @@
       </li>
     </ul>
   </nav>
-  <aside class="main-sidebar sidebar-dark-secondary elevation-4">
+  <aside class="main-sidebar sidebar-light-white elevation-4">
     <a href="{{ route('user#index') }}" class="brand-link">
-      <img src="{{ asset('customer/img/pizza.png') }}" alt="Logo" class="brand-image" >
-      <span class="brand-text h6 mb-0 font-weight-bold">Pizza Order System</span>
+      <img src="{{ asset('customer/img/pizza.png') }}" alt="Logo" class="brand-image">
+      <span class="brand-text h6 mb-0 font-weight-bold text-white">Pizza Order System</span>
     </a>
     <div class="sidebar">
       <nav class="mt-2">
@@ -84,20 +95,11 @@
               </p>
             </a>
           </li>
-          {{-- <li class="nav-item">
-            <a href="" class="nav-link">
-              <i class="fas fa-sign-out-alt nav-icon"></i>
-              <p>
-                Logout
-              </p>
-            </a>
-          </li> --}}
-
           <li class="nav-item">
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
-                <div class="nav-link">
-                    <button class="w-100 btn btn-secondary" type="submit">
+                <div class="">
+                    <button class="btn  nav-link text-left text-white" type="submit">
                         <i class="fas fa-sign-out-alt nav-icon"></i>
                         <p>Logout</p>
                     </button>

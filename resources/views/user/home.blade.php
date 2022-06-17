@@ -171,7 +171,7 @@
                                 <input type="date" name="startDate" class="form-control mb-2">
                                 <input type="date" name="endDate" class="form-control">
                             </div>
-                            <button class="btn btn-outline-primary w-100" type="submit">Search <i class="fas fa-search ms-3"></i></button>
+                            <button class="btn btn-outline-primary w-100" type="submit">Filter <i class="fas fa-search ms-3"></i></button>
                         </form>
                         <!-- -------------------------------pagination------------------------------------- -->
                         @if ($pizzas->total() > 6)
