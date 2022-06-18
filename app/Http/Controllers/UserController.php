@@ -24,21 +24,17 @@ class UserController extends Controller
 
     //search Pizza
     public function searchPizza(Request $request){
-        $pizzas = Pizza::where('publish_status',1)->where('pizza_name','like','%'.$request->search.'%')->paginate(6);
-        $categories = Category::get();
+        $pizzas = Pizza::where('publish_status',1)->where('pizza_name','like','%'.$request->search.'%')->get();
         $emptyStatus = count($pizzas) == 0 ? 0 : 1;
-        $pizzas->appends($request->all());
-        return view('user.home')->with(['pizzas'=>$pizzas, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
+        return response()->json(['pizzas'=>$pizzas,'emptyStatus'=>$emptyStatus]);
     }
 
     //search Category
     public function searchCategory(Request $request){
         $id = $request->id;
         $pizzas = Pizza::where('publish_status',1)->where('category_id','like','%'.$id.'%')->get();
-        $categories = Category::get();
         $emptyStatus = count($pizzas) == 0 ? 0 : 1;
-        return response()->json(['pizzas'=>$pizzas, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
-        // return view('user.home')->with(['pizzas'=>$pizzas, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
+        return response()->json(['pizzas'=>$pizzas,'emptyStatus'=>$emptyStatus]);
     }
 
     //search By price

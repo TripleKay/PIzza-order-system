@@ -127,14 +127,13 @@
                             <button class="btn btn-sm btn-dark mb-3 shadow hide-mobileFilter-btn"><i class="fas fa-times"></i></button>
                         </div>
                         <!-- -------------------------------search bar------------------------------------- -->
-                        <form action="{{ route('user#searchPizza') }}" method="GET">
-                            {{-- @csrf --}}
+
                             <div class="d-flex pizza-search-bar" style="border-radius: 10px">
-                                <input type="text" name="search" class="form-control  bg-transparent border-0" placeholder="search pizza ....">
+                                <input type="text" name="search" class="form-control  bg-transparent border-0 searchPizza" placeholder="search pizza ....">
                                 <button class="btn px-1 pe-2"><i class="fas fa-search text-primary" style="font-size: 20px ;"></i>
                                 </button>
                             </div>
-                        </form>
+
                         <!-- -------------------------------category------------------------------------- -->
                         <div class="my-5">
                             <h5 class="mb-4">Category Lists</h5>
@@ -300,11 +299,29 @@
             }
             return pizzaHtml;
         }
+        //pizza by response
+        function pizzasByResponse(response){
+            pizzaHtml = "";
+            if(response.emptyStatus == 0){
+                pizzaHtml = `
+                            <div class="col-12 d-flex align-items-center justify-content-center" style="min-height: 300px">
+                                <div class="text-danger p-3 bg-white  text-center" style="border-radius: 10px">
+                                    <img src="{{ asset('customer/img/pizza.png') }}" class="mb-3" alt="" srcset="" style="width: 80px;">
+                                    <h5>There is no Pizza.</h5>
+                                </div>
+                            </div>
+                `;
+            }else{
+                pizzaHtml = showPizza(response);
+            }
+            $('.pizza-box-container .row').html(pizzaHtml);
+        }
         //search By category
         $('.categoryBtn').on('click',function(){
             //get cat id
             let catId = $(this).attr('catId');
             //for ui
+            $('.searchPizza').val('');
             $('.category').removeClass('active');
             $(this).addClass('active');
             $('.pizza-pigination').addClass('d-none');
@@ -318,20 +335,29 @@
                     id: catId,
                 },
                 success:function(response){
-                    pizzaHtml = "";
-                    if(response.emptyStatus == 0){
-                        pizzaHtml = `
-                                    <div class="col-12 d-flex align-items-center justify-content-center" style="min-height: 300px">
-                                        <div class="text-danger p-3 bg-white  text-center" style="border-radius: 10px">
-                                            <img src="{{ asset('customer/img/pizza.png') }}" class="mb-3" alt="" srcset="" style="width: 80px;">
-                                            <h5>There is no Pizza.</h5>
-                                        </div>
-                                    </div>
-                        `;
-                    }else{
-                        pizzaHtml = showPizza(response);
-                    }
-                    $('.pizza-box-container .row').html(pizzaHtml);
+                    pizzasByResponse(response);
+                }
+            })
+
+        })
+         //search pizza by search bar
+         $('.searchPizza').on('change',function(){
+            //get searchkey
+            let searchKey = $(this).val();
+            //for ui
+            $('.category').removeClass('active');
+            $('.pizza-pigination').addClass('d-none');
+            //ajax
+            $.ajax({
+                url: "{{ route('user#searchPizza') }}",
+                method: "post",
+                dataType: "json",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    search: searchKey,
+                },
+                success:function(response){
+                    pizzasByResponse(response);
                 }
             })
 

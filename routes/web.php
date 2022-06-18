@@ -91,7 +91,7 @@ Route::group(['prefix'=>'user','middleware'=>[UserCheckMiddleware::class]],funct
     Route::get('/',[App\Http\Controllers\UserController::class,'index'])->name('user#index');
     Route::get('pizza/detail/{id}',[App\Http\Controllers\UserController::class,'pizzaDetail'])->name('user#pizzaDetail');
     Route::post('category/search/',[App\Http\Controllers\UserController::class,'searchCategory'])->name('user#searchCategory');
-    Route::get('search/item',[App\Http\Controllers\UserController::class,'searchPizza'])->name('user#searchPizza');
+    Route::post('search/item',[App\Http\Controllers\UserController::class,'searchPizza'])->name('user#searchPizza');
     Route::get('search/pizzaItem',[App\Http\Controllers\UserController::class,'searchPizzaItem'])->name('user#searchPizzaItem');
 
     Route::post('contact/create/',[ContactController::class,'createContact'])->name('user#createContact');

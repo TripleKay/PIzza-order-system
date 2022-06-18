@@ -20,6 +20,7 @@ class OrderController extends Controller
                     ->join('users','users.id','orders.customer_id')
                     ->join('pizzas','pizzas.pizza_id','orders.pizza_id')
                     ->groupBy('orders.pizza_id','orders.customer_id')
+                    ->orderBy('orders.order_id','desc')
                     ->paginate(5);
         if( count($data) == 0){
             $emptyStatus = 0;
