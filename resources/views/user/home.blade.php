@@ -140,15 +140,13 @@
                             <h5 class="mb-4">Category Lists</h5>
                             <div class="">
 
-                                <a href="{{ url('user#pizza-section') }}" class="btn bg-white d-flex justify-content-between mb-2 category  py-2 {{ request()->url() == route('user#index') ? 'active' : '' }}">
+                                <div  catId="" class="categoryBtn btn bg-white d-flex justify-content-between mb-2 category  py-2 {{ request()->url() == route('user#index') ? 'active' : '' }}">
                                     <p class="mb-0">All Categories</p>
-                                    {{-- <span class="badge bg-info rounded-pill">{{ $pizzas->count() }}</span>  --}}
-                                </a>
+                                </div>
                                 @foreach ($categories as $item)
-                                    <a href="{{ route('user#searchCategory',$item->category_id) }}" class="btn bg-white d-flex justify-content-between mb-2 category py-2 {{ request()->url() == route('user#searchCategory',$item->category_id) ? 'active' : '' }}">
+                                    <div catId="{{ $item->category_id }}"  class="categoryBtn btn bg-white d-flex justify-content-between mb-2 category py-2 {{ request()->url() == route('user#searchCategory',$item->category_id) ? 'active' : '' }}">
                                         <p class="mb-0">{{$item->category_name}}</p>
-                                        {{-- <span class="badge bg-danger rounded-pill">5</span> --}}
-                                    </a>
+                                    </div>
                                 @endforeach
 
                             </div>
@@ -174,10 +172,12 @@
                             <button class="btn btn-outline-primary w-100" type="submit">Filter <i class="fas fa-search ms-3"></i></button>
                         </form>
                         <!-- -------------------------------pagination------------------------------------- -->
-                        @if ($pizzas->total() > 6)
-                            <hr>
-                        @endif
-                        {{ $pizzas->links() }}
+                        <div class="pizza-pigination">
+                            @if ($pizzas->total() > 6)
+                                <hr>
+                            @endif
+                            {{ $pizzas->links() }}
+                        </div>
 
                     </div>
 
@@ -258,4 +258,85 @@
             </div>
         </div>
     </section>
+@endsection
+@section('script')
+    <script>
+        let pizzaHtml = "";
+        //to check buy one buy one
+        function buyOneGetOne(status){
+            let buyOneGetOne = "";
+                if(status == 1){
+                    buyOneGetOne = `<div class="ribbon h6 mb-0">Buy 1 Get 1</div>`;
+                }
+                return buyOneGetOne;
+        }
+        //to show pizza lists
+        function showPizza(response){
+            for(let i = 0; i < response.pizzas.length; i++){
+                pizzaHtml += `
+                <div class="col-6 col-md-6 col-lg-4">
+                    <div class="card pizza-card position-relative">
+                        ${buyOneGetOne(response.pizzas[i].buy_one_get_one_status)}
+                        <div class="card-body">
+                            <div class="card-img-container overflow-hidden" style="border: .5px solid #E7E2E2">
+                                <img src="{{ asset('uploads') }}/${response.pizzas[i].image}" class="img-fluid" alt="" srcset="">
+                            </div>
+                            <div class="mt-4">
+                                <h5>${response.pizzas[i].pizza_name}</h5>
+                                <div class="d-flex justify-content-between flex-wrap pizza-dis my-2">
+                                    <span class="">Discount: ${response.pizzas[i].discount_price} Ks</span>
+                                    <span class="d-none d-md-block">Waiting Time: ${response.pizzas[i].waiting_time} min</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center flex-wrap my-2">
+                                    <div class="h5 mb-0">${response.pizzas[i].price} Ks</div>
+                                    <a href="{{ route('user#pizzaDetail','') }}/${response.pizzas[i].pizza_id}" class="btn btn-primary px-3 mt-2 rounded-pill text-white pizza-box-btn">View Detail</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }
+            return pizzaHtml;
+        }
+        //search By category
+        $('.categoryBtn').on('click',function(){
+            //get cat id
+            let catId = $(this).attr('catId');
+            //for ui
+            $('.category').removeClass('active');
+            $(this).addClass('active');
+            $('.pizza-pigination').addClass('d-none');
+            //ajax
+            $.ajax({
+                url: "{{ route('user#searchCategory') }}",
+                method: "post",
+                dataType: "json",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    id: catId,
+                },
+                success:function(response){
+                    pizzaHtml = "";
+                    if(response.emptyStatus == 0){
+                        pizzaHtml = `
+                                    <div class="col-12 d-flex align-items-center justify-content-center" style="min-height: 300px">
+                                        <div class="text-danger p-3 bg-white  text-center" style="border-radius: 10px">
+                                            <img src="{{ asset('customer/img/pizza.png') }}" class="mb-3" alt="" srcset="" style="width: 80px;">
+                                            <h5>There is no Pizza.</h5>
+                                        </div>
+                                    </div>
+                        `;
+                    }else{
+                        pizzaHtml = showPizza(response);
+                    }
+                    $('.pizza-box-container .row').html(pizzaHtml);
+                }
+            })
+
+        })
+
+
+    </script>
 @endsection

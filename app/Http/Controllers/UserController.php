@@ -32,11 +32,13 @@ class UserController extends Controller
     }
 
     //search Category
-    public function searchCategory($id){
-        $pizzas = Pizza::where('publish_status',1)->where('category_id',$id)->paginate(6);
+    public function searchCategory(Request $request){
+        $id = $request->id;
+        $pizzas = Pizza::where('publish_status',1)->where('category_id','like','%'.$id.'%')->get();
         $categories = Category::get();
         $emptyStatus = count($pizzas) == 0 ? 0 : 1;
-        return view('user.home')->with(['pizzas'=>$pizzas, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
+        return response()->json(['pizzas'=>$pizzas, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
+        // return view('user.home')->with(['pizzas'=>$pizzas, 'categories'=>$categories,'emptyStatus'=>$emptyStatus]);
     }
 
     //search By price
